@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatórios com IA — mini curso SGD</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Tokens do Design System MS 0.12.0 */
+:root {
+  --ds-color-primary-50:#f5f8fb; --ds-color-primary-100:#e6edf5; --ds-color-primary-600:#004f9f;
+  --ds-color-primary-800:#002f5f; --ds-color-neutral-0:#ffffff; --ds-color-neutral-200:#d5d5d5;
+  --ds-color-neutral-700:#686867; --ds-color-neutral-900:#30302e; --ds-color-tertiary-500:#ffd500;
+  --ds-color-green-100:#eaf6ed; --ds-color-green-800:#18622e; --ds-color-red-100:#fbe9ea; --ds-color-red-700:#a91e23;
+  --ds-radius-md:12px; --ds-color-orange-100:#fff3ea; --ds-color-orange-800:#994f1a;
+  --r-background-color:var(--ds-color-neutral-0); --r-main-color:var(--ds-color-neutral-900);
+  --r-heading-color:var(--ds-color-primary-600); --r-link-color:var(--ds-color-primary-600);
+  --r-link-color-hover:var(--ds-color-primary-800); --r-selection-background-color:var(--ds-color-primary-100);
+  --r-main-font:"Open Sans",sans-serif; --r-heading-font:"Mulish",sans-serif; --r-main-font-size:32px;
+  --r-heading-text-transform:none; --r-heading1-size:2.2em; --r-heading2-size:1.5em;
+}
+.reveal h1,.reveal h2,.reveal h3 { font-weight:800; }
+.reveal .slides section { text-align:left; }
+.reveal section.capa, .reveal section.secao { text-align:left; }
+.capa-bg { background:var(--ds-color-primary-600); }
+.reveal section.capa h1, .reveal section.capa p, .reveal section.secao h2, .reveal section.secao p { color:var(--ds-color-neutral-0); }
+.reveal ul, .reveal ol { display:block; margin-left:1em; }
+.reveal li { margin:.3em 0; }
+.card { background:var(--ds-color-primary-50); border:1px solid var(--ds-color-neutral-200); border-radius:var(--ds-radius-md); padding:.6em .9em; margin:.3em 0; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:.6em; }
+.num { display:inline-grid; place-items:center; width:1.6em; height:1.6em; border-radius:50%; background:var(--ds-color-primary-600); color:var(--ds-color-neutral-0); font-family:"Mulish",sans-serif; font-weight:800; margin-right:.4em; }
+.ok { background:var(--ds-color-green-100); color:var(--ds-color-green-800); }
+.no { background:var(--ds-color-red-100); color:var(--ds-color-red-700); }
+.muted { color:var(--ds-color-neutral-700); font-size:.75em; }
+.reveal pre { width:100%; font-size:.5em; box-shadow:none; }
+.reveal pre code { max-height:520px; border-radius:var(--ds-radius-md); }
+.reveal :focus-visible { outline:3px solid var(--ds-color-tertiary-500); }
+.reveal .progress { color:var(--ds-color-tertiary-500); }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="capa" data-background-color="#004f9f">
+  <h1>Relatórios com IA</h1>
+  <p>Do pedido ao HTML pronto, no padrão do Governo de MS</p>
+  <p class="muted" style="color:inherit">Mini curso · Superintendência de Governo Digital (SGD)</p>
+</section>
+
+<section>
+  <h2>O que você leva daqui</h2>
+  <div class="card">Pedir à IA um relatório e receber <strong>um arquivo HTML pronto</strong>,
+  que abre no navegador e segue o Design System de MS.</div>
+  <p class="muted">Sem programar. Sem instalar nada.</p>
+</section>
+
+<section>
+  <h2>Hoje cada um faz de um jeito</h2>
+  <ul>
+    <li>Texto num relatório, tabela no outro, slide no terceiro</li>
+    <li>Cores e fontes fora do padrão</li>
+    <li>Número inventado pela IA para "completar"</li>
+    <li>Ninguém sabe de onde veio cada dado</li>
+  </ul>
+</section>
+
+<section>
+  <h2>A ideia central</h2>
+  <blockquote style="width:100%;font-size:1.1em">A IA monta rápido.<br><strong>Você</strong> responde pelo que está escrito.</blockquote>
+</section>
+
+<section class="secao" data-background-color="#004f9f">
+  <h2>As 4 premissas</h2>
+  <p>Perguntas · Prompt base · Dados · Estrutura</p>
+</section>
+
+<section>
+  <h2>As 4 premissas</h2>
+  <div class="grid">
+    <div class="card"><span class="num">1</span><strong>Perguntas</strong><br><span class="muted">Para quem, para quê, qual decisão</span></div>
+    <div class="card"><span class="num">2</span><strong>Prompt base</strong><br><span class="muted">Pedir sempre do mesmo jeito</span></div>
+    <div class="card"><span class="num">3</span><strong>Dados</strong><br><span class="muted">O que entra e o que fica de fora</span></div>
+    <div class="card"><span class="num">4</span><strong>Estrutura</strong><br><span class="muted">Esqueleto fixo no Design System</span></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">1</span>Perguntas</h2>
+  <ul>
+    <li>Quem vai ler?</li>
+    <li>Para quê?</li>
+    <li>Qual decisão ele ajuda a tomar?</li>
+    <li>Qual período? Qual tamanho?</li>
+    <li>O que aparece primeiro?</li>
+  </ul>
+  <p class="muted">Não sabe responder? Pare e pergunte a quem pediu.</p>
+</section>
+
+<section>
+  <h2><span class="num">2</span>Prompt base</h2>
+  <pre><code class="language-text" data-trim>
+Você vai montar um relatório em HTML para a SETDIG, Governo de MS.
+
+# Contexto
+- Quem vai ler: [quem]   - Para quê: [objetivo]
+- Decisão: [decisão]     - Período: [período]
+
+# Regras
+1. Use SÓ os dados abaixo. Não invente. Faltou? "a confirmar".
+2. Linguagem simples.
+3. Devolva UM arquivo HTML completo, CSS dentro de &lt;style&gt;.
+4. Só as variáveis --ds-* do Design System para cor e espaço.
+5. Mulish nos títulos, Open Sans no texto.
+6. Links em nova aba. 7. Funciona no celular.
+
+# Estrutura
+Faixa azul · Destaques · Detalhe · Atenção · Rodapé SETDIG
+
+# Dados
+[cole aqui]
+  </code></pre>
+  <p class="muted">Texto completo, com as cores, na página "Prompt base" do site.</p>
+</section>
+
+<section>
+  <h2>A regra mais importante</h2>
+  <div class="card no">"Use SÓ os dados que eu entreguei. Não invente número, nome ou data."</div>
+  <p>Sem ela, a IA preenche o que falta, e o erro vai com a sua assinatura.</p>
+</section>
+
+<section>
+  <h2><span class="num">3</span>Dados</h2>
+  <div class="grid">
+    <div class="card ok"><strong>Leve</strong><ul><li>Só o período</li><li>Só as colunas úteis</li><li>Fonte e data</li></ul></div>
+    <div class="card no"><strong>Nunca leve</strong><ul><li>CPF, telefone, endereço</li><li>Senha, token</li><li>Dado sigiloso</li></ul></div>
+  </div>
+  <p class="muted">Precisa do número? Mande o total, não a lista de pessoas.</p>
+</section>
+
+<section>
+  <h2><span class="num">4</span>Estrutura</h2>
+  <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Faixa azul: título · período · números</div>
+  <div class="card">Destaques: cards numerados</div>
+  <div class="card">Detalhe: listas ou tabela por tema</div>
+  <div class="card">Atenção: riscos e pendências</div>
+  <div class="card" style="background:var(--ds-color-neutral-200)">Rodapé SETDIG</div>
+</section>
+
+<section>
+  <h2>As cores dizem algo</h2>
+  <div class="grid">
+    <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Azul: marca e links</div>
+    <div class="card ok">Verde: concluído</div>
+    <div class="card" style="background:var(--ds-color-orange-100);color:var(--ds-color-orange-800)">Laranja: em andamento</div>
+    <div class="card no">Vermelho: bloqueado</div>
+  </div>
+  <p class="muted">Toda cor vem de uma variável <code>--ds-*</code>.</p>
+</section>
+
+<section class="secao" data-background-color="#004f9f">
+  <h2>Mão na massa</h2>
+  <p>Um relatório semanal, do começo ao fim</p>
+</section>
+
+<section>
+  <h2>O caminho</h2>
+  <p><span class="num">1</span>Responder as perguntas</p>
+  <p><span class="num">2</span>Exportar os dados do TFS</p>
+  <p><span class="num">3</span>Colar no prompt base</p>
+  <p><span class="num">4</span>Salvar o HTML e abrir no navegador</p>
+  <p><span class="num">5</span>Passar o checklist</p>
+</section>
+
+<section>
+  <h2>O resultado</h2>
+  <p><a href="../exemplos/relatorio-semanal.html" target="_blank" rel="noopener">Abrir o relatório de exemplo</a></p>
+  <p class="muted">Dados fictícios. Mesmo modelo dos relatórios da SGD.</p>
+</section>
+
+<section>
+  <h2>Checklist antes de enviar</h2>
+  <ul>
+    <li>Cada número está nos dados</li>
+    <li>A contagem bate</li>
+    <li>Nada de "a confirmar" esquecido</li>
+    <li>Sem dado pessoal</li>
+    <li>Cores do Design System, abre no celular</li>
+    <li>Links funcionam e abrem em nova aba</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Ajustes: um de cada vez</h2>
+  <div class="card ok">"Deixe os cards em duas colunas."</div>
+  <div class="card ok">"Mova a seção Atenção para o topo."</div>
+  <div class="card no">"Melhore tudo."</div>
+  <p class="muted">Pedido amplo faz a IA mexer nos números.</p>
+</section>
+
+<section>
+  <h2>Depois deste curso</h2>
+  <ul>
+    <li><strong>Reaproveitar:</strong> mande o HTML antigo e peça "troque só os dados"</li>
+    <li><strong>Publicar:</strong> GitHub Pages ou Artifact, com um link</li>
+    <li><strong>Automatizar:</strong> IA ligada direto no TFS e no BI</li>
+  </ul>
+</section>
+
+<section class="capa" data-background-color="#004f9f">
+  <h2>Material completo</h2>
+  <p><a href="../" style="color:var(--ds-color-tertiary-500)">fabioramos-02.github.io/mini-curso-ia</a></p>
+  <p class="muted" style="color:inherit">Secretaria-Executiva de Transformação Digital — SETDIG</p>
+</section>
+
+</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>Reveal.initialize({ hash:true, slideNumber:"c/t", transition:"fade", center:true });</script>
+</body>
+</html>

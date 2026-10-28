@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITULO}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Template de relatório — padrão visual Governo de MS.
+     IA: NÃO altere a paleta nem a estrutura (header/main/footer).
+     Substitua apenas os placeholders {{...}} e os comentários guiados. */
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:#ffffff; color:#30302e;
+    font-family:"Open Sans", sans-serif; font-size:16px; line-height:1.5;
+  }
+  a { color:#004f9f; font-weight:600; }
+  a:hover { color:#002f5f; }
+  :focus-visible { outline:3px solid #ffd500; outline-offset:2px; }
+  h1, h2, h3 { font-family:"Mulish", sans-serif; margin:0; }
+
+  header {
+    background:#004f9f; color:#ffffff; padding:2rem 1rem;
+  }
+  header .wrap { max-width:56rem; margin:0 auto; }
+  header h1 { font-size:2rem; line-height:1.2; }
+  header p { margin:.25rem 0 0; }
+  .ancora {
+    font-size:1.125rem; font-weight:600; margin-top:1rem;
+  }
+  .ancora strong { font-family:"Mulish", sans-serif; font-weight:800; }
+
+  .kpis {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(10rem, 1fr));
+    gap:.75rem; margin-top:1rem;
+  }
+  .kpi {
+    background:#ffffff; color:#30302e; border-radius:8px;
+    padding:.75rem; text-align:center;
+  }
+  .kpi .num {
+    font-family:"Mulish", sans-serif; font-weight:800; font-size:1.75rem;
+    display:block;
+  }
+  .kpi .rot { font-size:.875rem; color:#686867; }
+
+  main { max-width:56rem; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  h2 { font-size:1.5rem; color:#004f9f; margin:2rem 0 1rem; }
+
+  .atencao {
+    background:#fbe9ea; border:2px solid #a91e23;
+    border-radius:12px; padding:1rem; margin-top:1rem;
+    box-shadow:0 2px 4px rgba(0,0,0,.08);
+  }
+  .atencao h2 { color:#a91e23; margin:0 0 .5rem; font-size:1.125rem; }
+  .atencao .label {
+    display:inline-block; background:#a91e23; color:#ffffff;
+    border-radius:6px; padding:.25rem .5rem;
+    font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    margin-bottom:.5rem;
+  }
+
+  ul.lista { list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
+  ul.lista li {
+    background:#f5f8fb; border:1px solid #d5d5d5;
+    border-radius:8px; padding:.75rem 1rem;
+  }
+  ul.lista li h3 { font-size:1rem; margin:0 0 .25rem; }
+  ul.lista li p { margin:0; color:#686867; font-size:.9375rem; }
+
+  ul.lista.feitas li { background:#eaf6ed; border-color:#18622e; }
+  ul.lista.feitas li h3 { color:#18622e; }
+  ul.lista.andando li { background:#fff3ea; border-color:#994f1a; }
+  ul.lista.andando li h3 { color:#994f1a; }
+
+  footer {
+    background:#f9f9f9; color:#686867;
+    padding:1.5rem 1rem; font-size:.875rem;
+  }
+  footer .wrap { max-width:56rem; margin:0 auto; }
+  footer p { margin:.25rem 0; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER (faixa azul)
+     IA: preencha o título, subtítulo e a frase-âncora.
+     A frase-âncora deve entregar a conclusão principal já no topo
+     (ex: "3 entregues, 1 bloqueada, 2 em andamento").
+     KPIs: até 4 cards. Use só se houver métricas claras.
+     ============================================================ -->
+<header><div class="wrap">
+  <h1>{{TITULO}}</h1>
+  <p>{{SUBTITULO}}</p>
+  <p class="ancora">{{FRASE_ANCORA}}</p>
+  <div class="kpis">
+    <!-- Repita o bloco .kpi abaixo para cada indicador. Exemplo:
+    <div class="kpi"><span class="num">{{NUMERO}}</span><span class="rot">{{ROTULO}}</span></div>
+    -->
+    {{KPIS}}
+  </div>
+</div></header>
+
+<main>
+
+  <!-- ============================================================
+       ATENÇÃO (opcional)
+       IA: inclua se houver pendência que depende de decisão da chefia.
+       Sempre no topo. Diga o que falta, o impacto e a decisão sugerida.
+       Se não houver nada bloqueado, apague esta seção inteira.
+       ============================================================ -->
+  <section class="atencao" aria-labelledby="atencao-titulo">
+    <span class="label">Pede decisão</span>
+    <h2 id="atencao-titulo">{{ATENCAO_TITULO}}</h2>
+    <p><strong>O que falta:</strong> {{ATENCAO_O_QUE_FALTA}}</p>
+    <p><strong>Impacto:</strong> {{ATENCAO_IMPACTO}}</p>
+    <p><strong>Decisão sugerida:</strong> {{ATENCAO_DECISAO}}</p>
+  </section>
+
+  <!-- ============================================================
+       DESTAQUES (3 a 5 itens)
+       IA: itens entregues, grandes avanços ou marcos. Classe "feitas".
+       Formato: <li><h3>Título</h3><p>1 frase descrevendo o resultado.</p></li>
+       ============================================================ -->
+  <h2>Destaques</h2>
+  <ul class="lista feitas">
+    {{DESTAQUES}}
+  </ul>
+
+  <!-- ============================================================
+       DETALHE (agrupado por tema)
+       IA: use classe "andando" (laranja) para itens em curso,
+       sem classe para itens apenas informativos.
+       ============================================================ -->
+  <h2>Em andamento</h2>
+  <ul class="lista andando">
+    {{EM_ANDAMENTO}}
+  </ul>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Secretaria-Executiva de Transformação Digital — SETDIG.</p>
+  <p>{{FONTE_E_DATA}}</p>
+</div></footer>
+
+</body>
+</html>

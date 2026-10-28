@@ -1,0 +1,61 @@
+# Prompt base — Relatórios com IA (SGD / SETDIG)
+# Material: https://fabioramos-02.github.io/mini-curso-ia/
+#
+# COMO USAR
+# 1. Baixe este arquivo e o template-relatorio.html (botão ao lado no slide).
+# 2. Cole o prompt abaixo (de [PAPEL] em diante) no chat da IA (ChatGPT, Claude,
+#    Gemini ou Copilot).
+# 3. Anexe o template-relatorio.html no mesmo chat.
+# 4. Cole seus dados brutos no bloco [DADOS].
+# 5. A IA vai perguntar antes de responder se faltar contexto. Responda e ela
+#    devolve o HTML preenchido.
+
+[PAPEL]
+Aja como um analista sênior de dados da Secretaria-Executiva de Transformação Digital
+(SETDIG) do Governo de Mato Grosso do Sul. Você é especialista em transformar dado bruto
+em relatório gerencial curto, honesto e acionável, no padrão visual do portal MS.
+
+[CONTEXTO]
+- Quem vai ler: [QUEM, ex: Superintendente de Governo Digital, na reunião de segunda]
+- Para quê: [OBJETIVO DO LEITOR]
+- Decisão que o relatório apoia: [DECISÃO]
+- Período da análise: de [DATA INICIAL] a [DATA FINAL]
+- Fonte dos dados: [FONTE, ex: TFS, planilha X, exportação de Y]
+- Dados brutos ou base considerada: ver bloco [DADOS] no fim deste prompt.
+
+[OBJETIVO / TAREFA]
+Analise as informações do bloco [DADOS] e gere um relatório gerencial que contenha:
+1. Visão geral: 1 frase-âncora com o resultado principal, antes do número
+   (ex: "3 entregues, 1 bloqueada, 2 em andamento").
+2. Indicadores (KPIs) com evidência numérica real extraída da base. Nunca invente.
+3. Tendências e pontos de destaque positivos.
+4. Gargalos, anomalias ou itens bloqueados — sempre no topo da seção "Atenção",
+   com o impacto e a decisão sugerida à chefia.
+5. De 2 a 4 recomendações práticas para o próximo período.
+
+Regras obrigatórias (não quebre nenhuma):
+- Use SOMENTE o que está em [DADOS]. Não atribua causa que o dado não comprove.
+- Linguagem simples: frases curtas, voz ativa, sem jargão técnico no texto visível.
+- Nenhum dado pessoal sensível no HTML final (CPF, matrícula, e-mail de cidadão).
+  Se o dado bruto trouxer isso, substitua por "[dado interno]".
+- Se faltar informação para alguma seção, PARE E PERGUNTE antes de responder.
+  Não preencha com "a confirmar" sem antes tentar perguntar.
+
+[FORMATO DE SAÍDA]
+- Devolva UM arquivo HTML completo, preenchendo o template que foi anexado
+  (template-relatorio.html). Substitua os placeholders {{...}} pelo conteúdo real.
+- NÃO altere a paleta de cores do template. Mantenha a estrutura (header, main, footer).
+- Rodapé obrigatório: "Secretaria-Executiva de Transformação Digital — SETDIG".
+- Precisa funcionar no celular (375px) sem rolagem lateral.
+
+[PERGUNTE ANTES DE RESPONDER SE FALTAR]
+Se qualquer um destes itens não estiver claro, FAÇA UMA PERGUNTA direta antes de
+gerar o HTML:
+- Quem é o leitor (gestor, coordenador, técnico, cidadão)?
+- Qual decisão esse relatório apoia?
+- Período exato e fonte do dado?
+- Há algum item bloqueado que precisa de ação da chefia?
+- Qual a meta de referência para os KPIs (se aplicável)?
+
+[DADOS]
+[cole aqui a tabela, a lista ou o texto bruto]

@@ -28,46 +28,44 @@ A IA só devolve um relatório bom se receber **três coisas** na mesma conversa
 
 ```text
 [PAPEL]
-Aja como um analista sênior de dados da Secretaria-Executiva de Transformação Digital
-(SETDIG) do Governo de Mato Grosso do Sul. Você é especialista em transformar dado bruto
-em relatório gerencial curto, honesto e acionável, no padrão visual do portal MS.
+Aja como um analista sênior de dados da SETDIG — Governo de MS. Especialista em
+transformar dado bruto em relatório gerencial curto, honesto e acionável.
+
+[ESCOPO DO QUE VOCÊ PODE USAR]
+Use SOMENTE o conteúdo entre [DADOS] e [FIM DOS DADOS] NESTA mensagem, mais o que
+eu confirmar neste chat. É proibido usar memória de outras conversas, buscar na web
+ou supor que a demanda é continuação de alguma anterior. Se [DADOS] estiver vazio
+ou com placeholder, a primeira coisa que você faz é PEDIR OS DADOS.
 
 [CONTEXTO]
 - Quem vai ler: [QUEM]
 - Para quê: [OBJETIVO DO LEITOR]
 - Decisão que o relatório apoia: [DECISÃO]
-- Período da análise: de [DATA INICIAL] a [DATA FINAL]
-- Fonte dos dados: [FONTE]
-- Dados brutos: ver bloco [DADOS] no fim deste prompt.
+- Período: de [INÍCIO] a [FIM]
+- Fonte: [FONTE]
 
-[OBJETIVO / TAREFA]
-Analise [DADOS] e gere um relatório gerencial com:
-1. Visão geral: 1 frase-âncora com o resultado principal.
-2. Indicadores (KPIs) com evidência numérica real.
-3. Tendências e pontos de destaque positivos.
-4. Gargalos ou itens bloqueados, no topo da seção "Atenção", com impacto e
-   decisão sugerida à chefia.
-5. De 2 a 4 recomendações práticas.
+[OBJETIVO]
+Gere um relatório com:
+1. Frase-âncora com o resultado principal.
+2. KPIs com evidência numérica real.
+3. Tendências e destaques positivos.
+4. Gargalos/bloqueios no topo da seção "Atenção", com impacto e decisão sugerida.
+5. 2 a 4 recomendações práticas.
 
 Regras obrigatórias:
-- Use SOMENTE o que está em [DADOS]. Não atribua causa que o dado não comprove.
+- Use SOMENTE o que estiver entre [DADOS] e [FIM DOS DADOS].
 - Linguagem simples, sem jargão.
 - Sem dado pessoal sensível (CPF, matrícula, e-mail de cidadão).
+- Divergência numérica NUNCA é "erro" sem confirmação. Trate como "a conciliar".
 - Se faltar informação, PARE E PERGUNTE antes de responder.
 
 [FORMATO]
-- Devolva UM arquivo HTML completo, preenchendo o template anexado
-  (template-relatorio.html). Substitua os placeholders {{...}}.
-- NÃO altere a paleta nem a estrutura do template.
-- Rodapé: "Secretaria-Executiva de Transformação Digital — SETDIG".
-
-[PERGUNTE ANTES SE FALTAR]
-- Quem é o leitor? Qual decisão apoia?
-- Período, fonte e meta de referência dos KPIs?
-- Há algum item bloqueado?
+Preencha o template-relatorio.html (anexado). Substitua {{...}} pelo conteúdo real.
+Não altere paleta nem estrutura. Rodapé: SETDIG.
 
 [DADOS]
-[cole aqui]
+<!-- cole aqui -->
+[FIM DOS DADOS]
 ```
 
 ## Por que cada parte existe
@@ -75,6 +73,7 @@ Regras obrigatórias:
 | Parte | Para que serve |
 |---|---|
 | **Papel** | A IA assume um ponto de vista claro (analista sênior SETDIG). Respostas ficam mais acionáveis e menos genéricas. |
+| **Escopo** | Impede a IA de usar memória de outra conversa, buscar na web ou "lembrar" dados antigos. Se o [DADOS] vier vazio, ela pede antes de inventar. |
 | **Contexto** | A IA escreve para a pessoa certa e começa pelo que importa. |
 | **Objetivo** | Define o que o relatório precisa entregar: frase-âncora, KPIs com evidência, atenção, recomendações. |
 | **Regra "só use [DADOS]"** | Evita número inventado. É a regra mais importante. |

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Levantamento de serviços digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Template de relatório — padrão visual Governo de MS.
+     IA: NÃO altere a paleta nem a estrutura (header/main/footer).
+     Substitua apenas os placeholders {{...}} e os comentários guiados. */
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:#ffffff; color:#30302e;
+    font-family:"Open Sans", sans-serif; font-size:16px; line-height:1.5;
+  }
+  a { color:#004f9f; font-weight:600; }
+  a:hover { color:#002f5f; }
+  :focus-visible { outline:3px solid #ffd500; outline-offset:2px; }
+  h1, h2, h3 { font-family:"Mulish", sans-serif; margin:0; }
+
+  header {
+    background:#004f9f; color:#ffffff; padding:2rem 1rem;
+  }
+  header .wrap { max-width:56rem; margin:0 auto; }
+  header h1 { font-size:2rem; line-height:1.2; }
+  header p { margin:.25rem 0 0; }
+  .ancora {
+    font-size:1.125rem; font-weight:600; margin-top:1rem;
+  }
+  .ancora strong { font-family:"Mulish", sans-serif; font-weight:800; }
+
+  .kpis {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(10rem, 1fr));
+    gap:.75rem; margin-top:1rem;
+  }
+  .kpi {
+    background:#ffffff; color:#30302e; border-radius:8px;
+    padding:.75rem; text-align:center;
+  }
+  .kpi .num {
+    font-family:"Mulish", sans-serif; font-weight:800; font-size:1.75rem;
+    display:block;
+  }
+  .kpi .rot { font-size:.875rem; color:#686867; }
+
+  main { max-width:56rem; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  h2 { font-size:1.5rem; color:#004f9f; margin:2rem 0 1rem; }
+
+  .atencao {
+    background:#fbe9ea; border:2px solid #a91e23;
+    border-radius:12px; padding:1rem; margin-top:1rem;
+    box-shadow:0 2px 4px rgba(0,0,0,.08);
+  }
+  .atencao h2 { color:#a91e23; margin:0 0 .5rem; font-size:1.125rem; }
+  .atencao .label {
+    display:inline-block; background:#a91e23; color:#ffffff;
+    border-radius:6px; padding:.25rem .5rem;
+    font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    margin-bottom:.5rem;
+  }
+
+  ul.lista { list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
+  ul.lista li {
+    background:#f5f8fb; border:1px solid #d5d5d5;
+    border-radius:8px; padding:.75rem 1rem;
+  }
+  ul.lista li h3 { font-size:1rem; margin:0 0 .25rem; }
+  ul.lista li p { margin:0; color:#686867; font-size:.9375rem; }
+
+  ul.lista.feitas li { background:#eaf6ed; border-color:#18622e; }
+  ul.lista.feitas li h3 { color:#18622e; }
+  ul.lista.andando li { background:#fff3ea; border-color:#994f1a; }
+  ul.lista.andando li h3 { color:#994f1a; }
+
+  footer {
+    background:#f9f9f9; color:#686867;
+    padding:1.5rem 1rem; font-size:.875rem;
+  }
+  footer .wrap { max-width:56rem; margin:0 auto; }
+  footer p { margin:.25rem 0; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER (faixa azul)
+     IA: preencha o título, subtítulo e a frase-âncora.
+     A frase-âncora deve entregar a conclusão principal já no topo
+     (ex: "3 entregues, 1 bloqueada, 2 em andamento").
+     KPIs: até 4 cards. Use só se houver métricas claras.
+     ============================================================ -->
+<header><div class="wrap">
+  <h1>Levantamento de serviços digitais</h1>
+  <p>Censo Digital de Mato Grosso do Sul | Setembro a outubro de 2026</p>
+  <p class="ancora">O levantamento reuniu 817 serviços informados por 26 órgãos; 614 foram classificados nos níveis 4 e 5, que permitem ao cidadão resolver o serviço online.</p>
+  <div class="kpis">
+    <!-- Repita o bloco .kpi abaixo para cada indicador. Exemplo:
+    <div class="kpi"><span class="num">{{NUMERO}}</span><span class="rot">{{ROTULO}}</span></div>
+    -->
+    <div class="kpi"><span class="num">817</span><span class="rot">serviços informados por 26 órgãos</span></div>
+    <div class="kpi"><span class="num">75,9%</span><span class="rot">já resolvem online: 614 serviços nos níveis 4 e 5</span></div>
+    <div class="kpi"><span class="num">105</span><span class="rot">serviços online e automáticos (nível 5)</span></div>
+    <div class="kpi"><span class="num">97,9%</span><span class="rot">dos pedidos mensais informados estão em serviços 100% online</span></div>
+  </div>
+</div></header>
+
+<main>
+
+  <!-- ============================================================
+       ATENÇÃO (opcional)
+       IA: inclua se houver pendência que depende de decisão da chefia.
+       Sempre no topo. Diga o que falta, o impacto e a decisão sugerida.
+       Se não houver nada bloqueado, apague esta seção inteira.
+       ============================================================ -->
+  <section class="atencao" aria-labelledby="atencao-titulo">
+    <span class="label">Pede decisão</span>
+    <h2 id="atencao-titulo">Há números que precisam ser conciliados antes de uma apresentação definitiva</h2>
+    <p><strong>O que falta:</strong> O total informado é de 817 serviços, mas a distribuição por nível soma 809. O painel também informa 614 serviços nos níveis 4 e 5 e 75,9% online; esse percentual corresponde aproximadamente a uma base de 809 serviços, não de 817.</p>
+    <p><strong>Impacto:</strong> Sem conciliar a base, os totais e percentuais podem ser interpretados de formas diferentes. Também há 293 serviços fora da matriz de impacto e esforço por falta de informação sobre o nível ou sobre pedidos mensais.</p>
+    <p><strong>Decisão sugerida:</strong> Validar a base e a forma de cálculo dos indicadores antes de usá-los como números definitivos. Até lá, tratar as divergências como “a conciliar”.</p>
+  </section>
+
+  <!-- ============================================================
+       DESTAQUES (3 a 5 itens)
+       IA: itens entregues, grandes avanços ou marcos. Classe "feitas".
+       Formato: <li><h3>Título</h3><p>1 frase descrevendo o resultado.</p></li>
+       ============================================================ -->
+  <h2>Destaques</h2>
+  <ul class="lista feitas">
+    <li><h3>Levantamento estruturado no BI</h3><p>As respostas do formulário foram organizadas no painel Censo Digital para apoiar a análise e a priorização dos serviços.</p></li>
+    <li><h3>Serviços que já podem ser resolvidos online</h3><p>O painel registra 614 serviços nos níveis 4 e 5, incluindo 105 classificados como online e automáticos (nível 5).</p></li>
+    <li><h3>Grande parte dos pedidos ocorre online</h3><p>Segundo os dados informados, 5,8 milhões de 5,9 milhões de pedidos mensais estão associados a 524 serviços 100% online, equivalentes a 97,9%.</p></li>
+    <li><h3>Oportunidades de digitalização identificadas</h3><p>O painel aponta 95 serviços nos níveis 1 e 2 que podem avançar na digitalização; outros 65 têm uma etapa presencial exigida por lei.</p></li>
+    <li><h3>Órgãos com oferta digital avançada</h3><p>SEMADESC, JUCEMS, FUNDECT, CBMMS, AGESUL e CGE aparecem com 100% dos serviços informados online, conforme os números exibidos no painel.</p></li>
+  </ul>
+
+  <!-- ============================================================
+       DETALHE (agrupado por tema)
+       IA: use classe "andando" (laranja) para itens em curso,
+       sem classe para itens apenas informativos.
+       ============================================================ -->
+  <h2>Em andamento</h2>
+  <ul class="lista andando">
+    <li><h3>Priorizar serviços de maior impacto</h3><p>A matriz classifica 30 serviços como de alto impacto e alto esforço. Entre os exemplos estão Registrar Boletim de Ocorrência (PCMS) e serviços da SES e AGEHAB. Recomenda-se avaliar esses casos como iniciativas de maior porte e retorno potencial.</p></li>
+    <li><h3>Começar por oportunidades de menor esforço</h3><p>A matriz reúne 235 serviços de baixo impacto e baixo esforço e 231 de alto impacto e baixo esforço. Os serviços de alto impacto e baixo esforço podem ser avaliados primeiro, após confirmar quais ainda precisam de transformação.</p></li>
+    <li><h3>Tratar a oportunidade na AGRAER</h3><p>O painel informa 24 serviços da AGRAER e 0% online, indicando uma oportunidade de avaliação. Confirmar com o órgão os serviços, suas etapas e a viabilidade de digitalização.</p></li>
+    <li><h3>Completar os dados que faltam</h3><p>293 serviços ficaram fora da matriz por ausência do nível ou do número de pedidos por mês. Completar esses dados permitirá comparar melhor o impacto e o esforço.</p></li>
+    <li><h3>Validar a cobertura do levantamento</h3><p>O levantamento foi descrito como realizado junto a 42 secretarias, enquanto o painel registra dados de 26 órgãos. Confirmar se os demais órgãos não responderam ou se há outra explicação para a diferença.</p></li>
+  </ul>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Secretaria-Executiva de Transformação Digital — SETDIG.</p>
+  <p>Fonte: formulário de levantamento dos órgãos e BI do Censo Digital. Período informado: setembro a outubro de 2026. Painel: https://bi-setdig.vercel.app/censo-digital</p>
+</div></footer>
+
+</body>
+</html>

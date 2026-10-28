@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Levantamento de serviços digitais · Portal MS.GOV.BR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; background:#ffffff; color:#30302e;
+         font-family:"Open Sans",sans-serif; font-size:16px; line-height:1.5; }
+  a { color:#004f9f; font-weight:600; }
+  a:hover { color:#002f5f; }
+  :focus-visible { outline:3px solid #ffd500; outline-offset:2px; }
+  h1,h2,h3 { font-family:"Mulish",sans-serif; margin:0; }
+
+  header { background:#004f9f; color:#ffffff; padding:2rem 1rem; }
+  header .wrap { max-width:56rem; margin:0 auto; }
+  header h1 { font-size:2rem; line-height:1.2; }
+  header p { margin:.25rem 0 0; }
+  .ancora { font-size:1.125rem; font-weight:600; margin-top:1rem; }
+  .ancora strong { font-family:"Mulish",sans-serif; font-weight:800; }
+
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit, minmax(10rem,1fr));
+          gap:.75rem; margin-top:1rem; }
+  .kpi { background:#ffffff; color:#30302e; border-radius:8px;
+         padding:.85rem .75rem; text-align:center; }
+  .kpi .num { font-family:"Mulish",sans-serif; font-weight:800; font-size:1.65rem;
+              display:block; color:#004f9f; }
+  .kpi.alerta .num { color:#994f1a; }
+  .kpi .rot { font-size:.825rem; color:#686867; display:block; margin-top:.1rem; }
+
+  main { max-width:56rem; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  h2 { font-size:1.5rem; color:#004f9f; margin:2rem 0 1rem; }
+
+  .atencao { background:#fff3ea; border:2px solid #994f1a;
+             border-radius:12px; padding:1rem; margin-top:1rem;
+             box-shadow:0 2px 4px rgba(0,0,0,.08); }
+  .atencao h2 { color:#994f1a; margin:0 0 .5rem; font-size:1.125rem; }
+  .atencao p { margin:.25rem 0; }
+  .atencao .label { display:inline-block; background:#994f1a; color:#ffffff;
+                    border-radius:6px; padding:.25rem .5rem;
+                    font-size:.75rem; font-weight:700; text-transform:uppercase;
+                    letter-spacing:.03em; margin-bottom:.5rem; }
+
+  ul.lista { list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
+  ul.lista li { background:#f5f8fb; border:1px solid #d5d5d5;
+                border-radius:8px; padding:.75rem 1rem; }
+  ul.lista li h3 { font-size:1rem; margin:0 0 .25rem; color:#004f9f; }
+  ul.lista li p { margin:0; color:#30302e; font-size:.9375rem; }
+
+  ul.lista.recomendacoes li { background:#eaf6ed; border-color:#18622e; }
+  ul.lista.recomendacoes li h3 { color:#18622e; }
+
+  footer { background:#f9f9f9; color:#686867;
+           padding:1.5rem 1rem; font-size:.875rem; }
+  footer .wrap { max-width:56rem; margin:0 auto; }
+  footer p { margin:.25rem 0; }
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <h1>Levantamento de serviços digitais</h1>
+  <p>Portal MS.GOV.BR · controlador de autenticação</p>
+  <p class="ancora">
+    <strong>1 milhão de pessoas</strong> já acessaram o portal.
+    <strong>35,4 mil</strong> cadastros ainda <strong>a conciliar</strong> entre histórico e portal.
+  </p>
+  <div class="kpis">
+    <div class="kpi"><span class="num">18,9 mi</span><span class="rot">autenticações no histórico</span></div>
+    <div class="kpi"><span class="num">1.001.432</span><span class="rot">usuários únicos no histórico</span></div>
+    <div class="kpi"><span class="num">1.036.850</span><span class="rot">cadastros no portal</span></div>
+    <div class="kpi alerta"><span class="num">35.418</span><span class="rot">diferença a conciliar</span></div>
+  </div>
+</div></header>
+
+<main>
+
+  <section class="atencao" aria-labelledby="atencao-titulo">
+    <span class="label">A conciliar</span>
+    <h2 id="atencao-titulo">Diferença de 35.418 cadastros entre histórico e portal</h2>
+    <p><strong>O que foi observado:</strong> o portal mostra 1.036.850 cadastros,
+    o histórico de autenticações identifica 1.001.432 usuários únicos. Diferença de 35.418 (≈ 3,4%).</p>
+    <p><strong>Como tratar neste momento:</strong> a diferença não é apresentada como
+    erro. Pode indicar cadastro sem acesso recente, limpeza de base ou critérios diferentes
+    de contagem.</p>
+    <p><strong>Decisão sugerida:</strong> confirmar com a equipe técnica qual é o
+    critério de "usuário cadastrado" no portal e qual recorte de período o histórico cobre,
+    antes de levar o número para apresentação externa.</p>
+  </section>
+
+  <h2>Destaques do levantamento</h2>
+  <ul class="lista">
+    <li>
+      <h3>Volume consolidado de autenticações</h3>
+      <p>18.904.766 autenticações registradas no histórico. Em média, cada usuário único
+      acessou cerca de <strong>19 vezes</strong>.</p>
+    </li>
+    <li>
+      <h3>Base ativa próxima de 1 milhão</h3>
+      <p>1.001.432 pessoas identificadas no histórico. É a base real que já experimentou
+      um serviço digital do governo pelo portal.</p>
+    </li>
+    <li>
+      <h3>Cadastro reportado pelo portal</h3>
+      <p>1.036.850 contas listadas pelo próprio portal. Número a conciliar com o histórico
+      (ver seção "A conciliar").</p>
+    </li>
+  </ul>
+
+  <h2>Recomendações para o próximo passo</h2>
+  <ul class="lista recomendacoes">
+    <li>
+      <h3>Alinhar com a equipe técnica o critério de contagem</h3>
+      <p>Confirmar se "usuário cadastrado" no portal considera contas inativas, duplicadas
+      ou vinculadas a mais de um provedor de autenticação.</p>
+    </li>
+    <li>
+      <h3>Fixar o período de referência do histórico</h3>
+      <p>Documentar a data de corte do histórico (início e fim). Sem isso, qualquer
+      divergência fica difícil de interpretar.</p>
+    </li>
+    <li>
+      <h3>Levar os números a validação antes da apresentação externa</h3>
+      <p>Após conciliar, apresentar à chefia da SETDIG e à área demandante com os três
+      indicadores (autenticações, usuários únicos, cadastro) acompanhados do método de
+      contagem.</p>
+    </li>
+  </ul>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Secretaria-Executiva de Transformação Digital — SETDIG · Superintendência de Governo Digital.</p>
+  <p>Levantamento preliminar — números a conciliar entre o histórico de autenticações e o cadastro reportado pelo portal.</p>
+</div></footer>
+
+</body>
+</html>

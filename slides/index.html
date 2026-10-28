@@ -523,6 +523,68 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Slide "Como eu gero no ChatGPT" — 3 passos com print */
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .6em;
+      margin-top: .6em;
+    }
+
+    .passo {
+      background: var(--ds-color-primary-50);
+      border: 1px solid var(--ds-color-primary-100);
+      border-radius: var(--ds-radius-md);
+      padding: .5em .55em .55em;
+      display: flex;
+      flex-direction: column;
+      gap: .3em;
+    }
+
+    .passo-cabecalho {
+      display: flex;
+      align-items: center;
+      gap: .35em;
+    }
+
+    .passo .num {
+      width: 1.4em;
+      height: 1.4em;
+      font-size: .75em;
+    }
+
+    .passo h3 {
+      font-family: "Mulish", sans-serif;
+      font-size: .7em;
+      margin: 0;
+      color: var(--ds-color-primary-800);
+      line-height: 1.2;
+    }
+
+    .passo .thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: top left;
+      border: 1px solid var(--ds-color-neutral-200);
+      border-radius: 8px;
+      background: var(--ds-color-neutral-0);
+    }
+
+    .passo p {
+      margin: 0;
+      font-size: .55em;
+      color: var(--ds-color-neutral-700);
+      line-height: 1.3;
+    }
+
+    @media (max-width:900px) {
+      .passos {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -611,6 +673,11 @@
 Aja como analista sênior de dados da SETDIG — Governo de MS. Transforme dado bruto em
 relatório gerencial curto, honesto e acionável.
 
+[ESCOPO]
+Use SOMENTE o conteúdo entre [DADOS] e [FIM DOS DADOS] NESTA mensagem + o que eu
+confirmar neste chat. Proibido usar memória de outras conversas, buscar na web ou
+supor que a demanda é continuação. Se [DADOS] estiver vazio, PEÇA os dados primeiro.
+
 [CONTEXTO]
 - Quem vai ler: [QUEM]
 - Para quê: [OBJETIVO]
@@ -627,9 +694,10 @@ Gere um relatório com:
 5. 2 a 4 recomendações práticas.
 
 Regras:
-- Use SOMENTE o que estiver em [DADOS].
+- Use SOMENTE o que estiver entre [DADOS] e [FIM DOS DADOS].
 - Linguagem simples, sem jargão.
 - Nenhum dado pessoal sensível.
+- Divergência numérica NUNCA é "erro" sem confirmação. Trate como "a conciliar".
 - Se faltar contexto, PARE E PERGUNTE antes de responder.
 
 [FORMATO]
@@ -637,7 +705,8 @@ Preencha o template-relatorio.html (anexado). Substitua {{...}} pelo conteúdo r
 Não altere paleta nem estrutura. Rodapé: SETDIG.
 
 [DADOS]
-[cole aqui]
+<!-- cole aqui -->
+[FIM DOS DADOS]
   </code></pre>
           <aside class="col-notas">
             <h3>Como usar</h3>
@@ -754,6 +823,39 @@ Não altere paleta nem estrutura. Rodapé: SETDIG.
         </div>
         <p class="muted full-nota">Mesmos dados. Prompt base + template cuidam da transformação. <a
             href="../exemplos/antes-demanda-antonio/" target="_blank" rel="noopener">Ver passo a passo</a>.</p>
+      </section>
+
+      <section>
+        <h2>Como eu gero no ChatGPT</h2>
+        <div class="passos">
+          <div class="passo">
+            <div class="passo-cabecalho"><span class="num">1</span>
+              <h3>Colar prompt + anexar template</h3>
+            </div>
+            <img class="thumb" src="../assets/img/chatgpt/01-colar-prompt.png"
+              alt="Tela do ChatGPT com o prompt colado e o template HTML anexado">
+            <p>Conversa nova. Prompt inteiro na mensagem. Template anexado.</p>
+          </div>
+          <div class="passo">
+            <div class="passo-cabecalho"><span class="num">2</span>
+              <h3>A IA pergunta antes</h3>
+            </div>
+            <img class="thumb" src="../assets/img/chatgpt/02-ia-pergunta.png"
+              alt="ChatGPT fazendo perguntas de confirmação antes de gerar o relatório">
+            <p>Quem lê, objetivo, período, fonte, decisão, bloqueios. Nada é inventado.</p>
+          </div>
+          <div class="passo">
+            <div class="passo-cabecalho"><span class="num">3</span>
+              <h3>Baixar o HTML pronto</h3>
+            </div>
+            <img class="thumb" src="../assets/img/chatgpt/03-relatorio-pronto.png"
+              alt="ChatGPT entregando o relatório HTML pronto para baixar">
+            <p>Relatório preenchido no template. Botão de baixar na própria conversa.</p>
+          </div>
+        </div>
+        <p class="muted">Caso real: <a href="../exemplos/relatorio-levantamento-servicos-digitais-setdig.html"
+            target="_blank" rel="noopener">levantamento de serviços digitais</a> ·
+          <a href="../12-chatgpt-passo-a-passo/" target="_blank" rel="noopener">passo a passo completo</a>.</p>
       </section>
 
       <section>

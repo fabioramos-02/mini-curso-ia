@@ -6,7 +6,7 @@
 # 2. Cole o prompt abaixo (de [PAPEL] em diante) no chat da IA (ChatGPT, Claude,
 #    Gemini ou Copilot).
 # 3. Anexe o template-relatorio.html no mesmo chat.
-# 4. Cole seus dados brutos no bloco [DADOS].
+# 4. Cole seus dados brutos ENTRE as linhas [DADOS] e [FIM DOS DADOS].
 # 5. A IA vai perguntar antes de responder se faltar contexto. Responda e ela
 #    devolve o HTML preenchido.
 
@@ -14,6 +14,18 @@
 Aja como um analista sênior de dados da Secretaria-Executiva de Transformação Digital
 (SETDIG) do Governo de Mato Grosso do Sul. Você é especialista em transformar dado bruto
 em relatório gerencial curto, honesto e acionável, no padrão visual do portal MS.
+
+[ESCOPO DO QUE VOCÊ PODE USAR]
+Use SOMENTE o conteúdo que estiver literalmente entre [DADOS] e [FIM DOS DADOS] NESTA
+mensagem, somado às respostas que eu te der nesta conversa. É proibido:
+- Usar memória de outras conversas, nome de pessoa, projeto ou número que você "lembre".
+- Buscar na web, em cache, em arquivo que não foi anexado agora.
+- Supor que esta demanda é continuação de alguma anterior, mesmo que o tema pareça o mesmo.
+- Preencher qualquer campo com informação que não esteja em [DADOS] ou que eu não tenha
+  confirmado AGORA, nesta conversa.
+
+Se o bloco [DADOS] estiver vazio, só com texto genérico ou com um placeholder como
+"[cole aqui]", a PRIMEIRA coisa que você faz é pedir os dados. Não gere nada antes.
 
 [CONTEXTO]
 - Quem vai ler: [QUEM, ex: Superintendente de Governo Digital, na reunião de segunda]
@@ -24,7 +36,7 @@ em relatório gerencial curto, honesto e acionável, no padrão visual do portal
 - Dados brutos ou base considerada: ver bloco [DADOS] no fim deste prompt.
 
 [OBJETIVO / TAREFA]
-Analise as informações do bloco [DADOS] e gere um relatório gerencial que contenha:
+Analise as informações entre [DADOS] e [FIM DOS DADOS] e gere um relatório gerencial com:
 1. Visão geral: 1 frase-âncora com o resultado principal, antes do número
    (ex: "3 entregues, 1 bloqueada, 2 em andamento").
 2. Indicadores (KPIs) com evidência numérica real extraída da base. Nunca invente.
@@ -34,10 +46,13 @@ Analise as informações do bloco [DADOS] e gere um relatório gerencial que con
 5. De 2 a 4 recomendações práticas para o próximo período.
 
 Regras obrigatórias (não quebre nenhuma):
-- Use SOMENTE o que está em [DADOS]. Não atribua causa que o dado não comprove.
+- Use SOMENTE o que está entre [DADOS] e [FIM DOS DADOS]. Não atribua causa que o dado
+  não comprove.
 - Linguagem simples: frases curtas, voz ativa, sem jargão técnico no texto visível.
 - Nenhum dado pessoal sensível no HTML final (CPF, matrícula, e-mail de cidadão).
   Se o dado bruto trouxer isso, substitua por "[dado interno]".
+- Diferença/divergência entre números NUNCA é apresentada como "erro" sem confirmação
+  explícita do usuário. Trate como "a conciliar" até receber confirmação.
 - Se faltar informação para alguma seção, PARE E PERGUNTE antes de responder.
   Não preencha com "a confirmar" sem antes tentar perguntar.
 
@@ -49,13 +64,15 @@ Regras obrigatórias (não quebre nenhuma):
 - Precisa funcionar no celular (375px) sem rolagem lateral.
 
 [PERGUNTE ANTES DE RESPONDER SE FALTAR]
-Se qualquer um destes itens não estiver claro, FAÇA UMA PERGUNTA direta antes de
-gerar o HTML:
+Faça as perguntas abaixo APENAS depois de confirmar que [DADOS] foi preenchido com
+conteúdo real. Se qualquer um destes itens não estiver claro, PERGUNTE antes de gerar:
 - Quem é o leitor (gestor, coordenador, técnico, cidadão)?
 - Qual decisão esse relatório apoia?
 - Período exato e fonte do dado?
 - Há algum item bloqueado que precisa de ação da chefia?
 - Qual a meta de referência para os KPIs (se aplicável)?
+- Alguma divergência numérica deve ser tratada como erro ou como "a conciliar"?
 
 [DADOS]
-[cole aqui a tabela, a lista ou o texto bruto]
+<!-- cole aqui a tabela, a lista ou o texto bruto. Nada acima desta linha será usado como dado. -->
+[FIM DOS DADOS]

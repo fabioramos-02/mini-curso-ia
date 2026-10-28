@@ -1,61 +1,91 @@
 # 4. O prompt base
 
-Copie o texto abaixo, preencha o que está entre `[colchetes]` e cole os dados no fim.
-Funciona no ChatGPT, no Claude, no Gemini ou no Copilot.
+A IA só devolve um relatório bom se receber **três coisas** na mesma conversa:
+
+1. O **prompt base** (texto abaixo) — explica para a IA quem ela é, para que o relatório
+   serve e as regras que ela não pode quebrar.
+2. O **template HTML** — esqueleto com os espaços `{{...}}` que a IA preenche. Garante
+   que o visual sai no padrão do Governo de MS.
+3. Os **seus dados** — colados no fim do prompt.
+
+!!! tip "Baixe os dois arquivos agora"
+    - [:material-download: Baixar o prompt (.txt)](assets/downloads/prompt-base.txt){ download="prompt-relatorio-setdig.txt" .md-button }
+    - [:material-download: Baixar o template (.html)](assets/downloads/template-relatorio.html){ download="template-relatorio-setdig.html" .md-button }
+
+    Os mesmos arquivos estão no slide **"Prompt base"** da apresentação, com um botão
+    extra de **Copiar**.
+
+## Como usar
+
+1. Abra o chat da IA (ChatGPT, Claude, Gemini ou Copilot).
+2. Cole o **prompt** (texto abaixo).
+3. **Anexe** o template HTML.
+4. Cole seus **dados** no bloco `[DADOS]` do prompt.
+5. A IA vai perguntar antes de responder se faltar contexto. Responda e ela devolve
+   o HTML pronto.
+
+## O prompt
 
 ```text
-Você vai montar um relatório em HTML para a Secretaria-Executiva de Transformação Digital
-(SETDIG), do Governo de Mato Grosso do Sul.
+[PAPEL]
+Aja como um analista sênior de dados da Secretaria-Executiva de Transformação Digital
+(SETDIG) do Governo de Mato Grosso do Sul. Você é especialista em transformar dado bruto
+em relatório gerencial curto, honesto e acionável, no padrão visual do portal MS.
 
-# Contexto
-- Quem vai ler: [quem]
-- Para quê: [objetivo]
-- Decisão que o relatório apoia: [decisão]
-- Período: [período]
-- O que aparece primeiro: [o mais importante]
+[CONTEXTO]
+- Quem vai ler: [QUEM]
+- Para quê: [OBJETIVO DO LEITOR]
+- Decisão que o relatório apoia: [DECISÃO]
+- Período da análise: de [DATA INICIAL] a [DATA FINAL]
+- Fonte dos dados: [FONTE]
+- Dados brutos: ver bloco [DADOS] no fim deste prompt.
 
-# Regras
-1. Use SÓ os dados que estão em "Dados", no fim. Não invente número, nome ou data.
-   Se faltar algo, escreva "a confirmar" e me avise no fim da resposta.
-2. Linguagem simples: frases curtas, voz ativa, sem jargão.
-3. Devolva UM arquivo HTML completo, com o CSS dentro de <style>. Sem JavaScript.
-4. Siga o Design System de MS: use só as variáveis CSS abaixo para cor, espaço e raio.
-   Não use outra cor.
-5. Fontes: Mulish nos títulos e Open Sans no texto, carregadas do Google Fonts.
-6. Todo link abre em nova aba: target="_blank" rel="noopener".
-7. Precisa funcionar no celular (largura de 375px) sem rolagem lateral.
-8. Rodapé: "Secretaria-Executiva de Transformação Digital — SETDIG".
+[OBJETIVO / TAREFA]
+Analise [DADOS] e gere um relatório gerencial com:
+1. Visão geral: 1 frase-âncora com o resultado principal.
+2. Indicadores (KPIs) com evidência numérica real.
+3. Tendências e pontos de destaque positivos.
+4. Gargalos ou itens bloqueados, no topo da seção "Atenção", com impacto e
+   decisão sugerida à chefia.
+5. De 2 a 4 recomendações práticas.
 
-# Estrutura
-1. Faixa azul no topo com o título, o período e de 2 a 4 números-resumo.
-2. "Destaques": até 5 itens, em cards numerados.
-3. Detalhe: listas ou tabela agrupadas por tema.
-4. "Atenção": riscos ou pendências, se houver.
-5. Rodapé.
+Regras obrigatórias:
+- Use SOMENTE o que está em [DADOS]. Não atribua causa que o dado não comprove.
+- Linguagem simples, sem jargão.
+- Sem dado pessoal sensível (CPF, matrícula, e-mail de cidadão).
+- Se faltar informação, PARE E PERGUNTE antes de responder.
 
-# Variáveis do Design System (cole no :root)
---ds-color-primary-600:#004f9f; --ds-color-primary-800:#002f5f; --ds-color-primary-50:#f5f8fb;
---ds-color-primary-100:#e6edf5; --ds-color-neutral-0:#ffffff; --ds-color-neutral-100:#f9f9f9;
---ds-color-neutral-200:#d5d5d5; --ds-color-neutral-700:#686867; --ds-color-neutral-900:#30302e;
---ds-color-tertiary-500:#ffd500; --ds-color-green-100:#eaf6ed; --ds-color-green-800:#18622e;
---ds-color-orange-100:#fff3ea; --ds-color-orange-800:#994f1a; --ds-color-red-100:#fbe9ea;
---ds-color-red-700:#a91e23; --ds-radius-sm:8px; --ds-radius-md:12px;
---ds-spacing-8:.5rem; --ds-spacing-16:1rem; --ds-spacing-24:1.5rem; --ds-spacing-32:2rem;
+[FORMATO]
+- Devolva UM arquivo HTML completo, preenchendo o template anexado
+  (template-relatorio.html). Substitua os placeholders {{...}}.
+- NÃO altere a paleta nem a estrutura do template.
+- Rodapé: "Secretaria-Executiva de Transformação Digital — SETDIG".
 
-# Dados
-[cole aqui a tabela, a lista ou o texto com os dados]
+[PERGUNTE ANTES SE FALTAR]
+- Quem é o leitor? Qual decisão apoia?
+- Período, fonte e meta de referência dos KPIs?
+- Há algum item bloqueado?
+
+[DADOS]
+[cole aqui]
 ```
 
 ## Por que cada parte existe
 
 | Parte | Para que serve |
 |---|---|
-| Contexto | A IA escreve para a pessoa certa e começa pelo que importa. |
-| Regra 1 | Evita número inventado. É a regra mais importante. |
-| Regra 3 | Você recebe um arquivo, não um texto para montar. |
-| Regras 4 e 5 | O relatório sai com a cara do Governo de MS. |
-| Estrutura | Todos os relatórios do time ficam parecidos e fáceis de ler. |
+| **Papel** | A IA assume um ponto de vista claro (analista sênior SETDIG). Respostas ficam mais acionáveis e menos genéricas. |
+| **Contexto** | A IA escreve para a pessoa certa e começa pelo que importa. |
+| **Objetivo** | Define o que o relatório precisa entregar: frase-âncora, KPIs com evidência, atenção, recomendações. |
+| **Regra "só use [DADOS]"** | Evita número inventado. É a regra mais importante. |
+| **Formato com template** | A IA não precisa inventar HTML nem cor — só preencher. Resultado padronizado. |
+| **"Pergunte antes"** | Se o contexto está raso, a IA não "chuta". Pergunta primeiro e volta com o relatório certo. |
 
 !!! tip "Pediu ajuste?"
-    Peça mudanças pequenas, uma por vez: "troque a ordem das seções", "deixe os cards em duas
-    colunas". Não peça para "melhorar tudo", porque a IA pode mexer nos números.
+    Peça mudanças pequenas, uma por vez: "troque a ordem das seções", "mova a Atenção
+    para o topo", "junte os KPIs em 2 colunas". Não peça para "melhorar tudo" — a IA
+    pode mexer nos números.
+
+!!! warning "Antes de enviar o relatório"
+    Passe pelo [checklist](08-checklist.md). Confira se cada número está nos dados
+    originais, se não sobrou nenhum `{{PLACEHOLDER}}` e se o rodapé está correto.

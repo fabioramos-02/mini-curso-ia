@@ -32,6 +32,8 @@ flowchart LR
 7. [Um exemplo do começo ao fim](07-exemplo.md)
 8. [O checklist antes de enviar](08-checklist.md)
 9. [Próximos passos](09-proximos-passos.md)
+10. [Qual IA usar](10-ias-qual-usar.md)
+11. [Publicar o HTML](11-publicar.md)
 
 ## Apresentação
 

@@ -1,222 +1,873 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Relatórios com IA — mini curso SGD</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-<style>
-/* Tokens do Design System MS 0.12.0 */
-:root {
-  --ds-color-primary-50:#f5f8fb; --ds-color-primary-100:#e6edf5; --ds-color-primary-600:#004f9f;
-  --ds-color-primary-800:#002f5f; --ds-color-neutral-0:#ffffff; --ds-color-neutral-200:#d5d5d5;
-  --ds-color-neutral-700:#686867; --ds-color-neutral-900:#30302e; --ds-color-tertiary-500:#ffd500;
-  --ds-color-green-100:#eaf6ed; --ds-color-green-800:#18622e; --ds-color-red-100:#fbe9ea; --ds-color-red-700:#a91e23;
-  --ds-radius-md:12px; --ds-color-orange-100:#fff3ea; --ds-color-orange-800:#994f1a;
-  --r-background-color:var(--ds-color-neutral-0); --r-main-color:var(--ds-color-neutral-900);
-  --r-heading-color:var(--ds-color-primary-600); --r-link-color:var(--ds-color-primary-600);
-  --r-link-color-hover:var(--ds-color-primary-800); --r-selection-background-color:var(--ds-color-primary-100);
-  --r-main-font:"Open Sans",sans-serif; --r-heading-font:"Mulish",sans-serif; --r-main-font-size:32px;
-  --r-heading-text-transform:none; --r-heading1-size:2.2em; --r-heading2-size:1.5em;
-}
-.reveal h1,.reveal h2,.reveal h3 { font-weight:800; }
-.reveal .slides section { text-align:left; }
-.reveal section.capa, .reveal section.secao { text-align:left; }
-.capa-bg { background:var(--ds-color-primary-600); }
-.reveal section.capa h1, .reveal section.capa p, .reveal section.secao h2, .reveal section.secao p { color:var(--ds-color-neutral-0); }
-.reveal ul, .reveal ol { display:block; margin-left:1em; }
-.reveal li { margin:.3em 0; }
-.card { background:var(--ds-color-primary-50); border:1px solid var(--ds-color-neutral-200); border-radius:var(--ds-radius-md); padding:.6em .9em; margin:.3em 0; }
-.grid { display:grid; grid-template-columns:1fr 1fr; gap:.6em; }
-.num { display:inline-grid; place-items:center; width:1.6em; height:1.6em; border-radius:50%; background:var(--ds-color-primary-600); color:var(--ds-color-neutral-0); font-family:"Mulish",sans-serif; font-weight:800; margin-right:.4em; }
-.ok { background:var(--ds-color-green-100); color:var(--ds-color-green-800); }
-.no { background:var(--ds-color-red-100); color:var(--ds-color-red-700); }
-.muted { color:var(--ds-color-neutral-700); font-size:.75em; }
-.reveal pre { width:100%; font-size:.5em; box-shadow:none; }
-.reveal pre code { max-height:520px; border-radius:var(--ds-radius-md); }
-.reveal :focus-visible { outline:3px solid var(--ds-color-tertiary-500); }
-.reveal .progress { color:var(--ds-color-tertiary-500); }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatórios com IA — mini curso SGD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Tokens do Design System MS 0.12.0 */
+    :root {
+      --ds-color-primary-50: #f5f8fb;
+      --ds-color-primary-100: #e6edf5;
+      --ds-color-primary-600: #004f9f;
+      --ds-color-primary-800: #002f5f;
+      --ds-color-neutral-0: #ffffff;
+      --ds-color-neutral-200: #d5d5d5;
+      --ds-color-neutral-700: #686867;
+      --ds-color-neutral-900: #30302e;
+      --ds-color-tertiary-500: #ffd500;
+      --ds-color-green-100: #eaf6ed;
+      --ds-color-green-800: #18622e;
+      --ds-color-red-100: #fbe9ea;
+      --ds-color-red-700: #a91e23;
+      --ds-radius-md: 12px;
+      --ds-color-orange-100: #fff3ea;
+      --ds-color-orange-800: #994f1a;
+      --r-background-color: var(--ds-color-neutral-0);
+      --r-main-color: var(--ds-color-neutral-900);
+      --r-heading-color: var(--ds-color-primary-600);
+      --r-link-color: var(--ds-color-primary-600);
+      --r-link-color-hover: var(--ds-color-primary-800);
+      --r-selection-background-color: var(--ds-color-primary-100);
+      --r-main-font: "Open Sans", sans-serif;
+      --r-heading-font: "Mulish", sans-serif;
+      --r-main-font-size: 32px;
+      --r-heading-text-transform: none;
+      --r-heading1-size: 2.2em;
+      --r-heading2-size: 1.5em;
+    }
+
+    .reveal h1,
+    .reveal h2,
+    .reveal h3 {
+      font-weight: 800;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+    }
+
+    .reveal section.capa,
+    .reveal section.secao {
+      text-align: left;
+    }
+
+    .capa-bg {
+      background: var(--ds-color-primary-600);
+    }
+
+    .reveal section.capa h1,
+    .reveal section.capa p,
+    .reveal section.secao h2,
+    .reveal section.secao p {
+      color: var(--ds-color-neutral-0);
+    }
+
+    .reveal ul,
+    .reveal ol {
+      display: block;
+      margin-left: 1em;
+    }
+
+    .reveal li {
+      margin: .3em 0;
+    }
+
+    .card {
+      background: var(--ds-color-primary-50);
+      border: 1px solid var(--ds-color-neutral-200);
+      border-radius: var(--ds-radius-md);
+      padding: .6em .9em;
+      margin: .3em 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6em;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 1.6em;
+      height: 1.6em;
+      border-radius: 50%;
+      background: var(--ds-color-primary-600);
+      color: var(--ds-color-neutral-0);
+      font-family: "Mulish", sans-serif;
+      font-weight: 800;
+      margin-right: .4em;
+    }
+
+    .ok {
+      background: var(--ds-color-green-100);
+      color: var(--ds-color-green-800);
+    }
+
+    .no {
+      background: var(--ds-color-red-100);
+      color: var(--ds-color-red-700);
+    }
+
+    .muted {
+      color: var(--ds-color-neutral-700);
+      font-size: .75em;
+    }
+
+    .reveal pre {
+      width: 100%;
+      font-size: .5em;
+      box-shadow: none;
+    }
+
+    .reveal pre code {
+      max-height: 520px;
+      border-radius: var(--ds-radius-md);
+    }
+
+    .reveal :focus-visible {
+      outline: 3px solid var(--ds-color-tertiary-500);
+    }
+
+    .reveal .progress {
+      color: var(--ds-color-tertiary-500);
+    }
+
+    /* Slide "Perguntas" — tooltip "Quem vai ler?" */
+    .qvl {
+      position: relative;
+      list-style: disc;
+    }
+
+    .qvl-btn {
+      background: none;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      border-bottom: 2px dashed var(--ds-color-primary-600);
+      display: inline-flex;
+      align-items: center;
+      gap: .25em;
+    }
+
+    .qvl-btn:hover,
+    .qvl-btn:focus-visible {
+      color: var(--ds-color-primary-800);
+    }
+
+    .qvl-ic {
+      font-size: .75em;
+      opacity: .7;
+    }
+
+    .qvl-pop {
+      position: absolute;
+      left: 0;
+      top: calc(100% + .4em);
+      z-index: 10;
+      min-width: 16em;
+      max-width: 22em;
+      background: var(--ds-color-neutral-0);
+      color: var(--ds-color-neutral-900);
+      border: 1px solid var(--ds-color-primary-100);
+      border-radius: var(--ds-radius-md);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .15);
+      padding: .6em .75em;
+      font-size: .6em;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .qvl-pop strong {
+      display: block;
+      font-family: "Mulish", sans-serif;
+      color: var(--ds-color-primary-600);
+      margin-bottom: .4em;
+      font-size: 1.05em;
+    }
+
+    .persona {
+      display: flex;
+      gap: .5em;
+      align-items: baseline;
+      padding: .3em .4em;
+      border-radius: 6px;
+      margin: .1em 0;
+      transition: background .12s ease;
+    }
+
+    .persona:hover {
+      background: var(--ds-color-primary-50);
+    }
+
+    .persona b {
+      color: var(--ds-color-primary-800);
+      min-width: 7em;
+      display: inline-block;
+      font-family: "Mulish", sans-serif;
+    }
+
+    .persona span {
+      color: var(--ds-color-neutral-700);
+    }
+
+    .qvl:hover .qvl-pop,
+    .qvl.aberto .qvl-pop,
+    .qvl-btn:focus-visible+.qvl-pop {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Slide "Prompt base" — botões */
+    .prompt-acoes {
+      display: flex;
+      gap: .5em;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: .4em 0 .2em;
+    }
+
+    .reveal a.btn-ds,
+    .reveal button.btn-ds,
+    .btn-ds {
+      display: inline-flex;
+      align-items: center;
+      gap: .35em;
+      background: var(--ds-color-primary-600);
+      color: #ffffff !important;
+      padding: .4em .9em;
+      border: 2px solid var(--ds-color-primary-600);
+      border-radius: 999px;
+      font: inherit;
+      font-size: .55em;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .12s ease, color .12s ease, transform .08s ease;
+    }
+
+    .reveal a.btn-ds:hover,
+    .reveal button.btn-ds:hover,
+    .btn-ds:hover {
+      background: var(--ds-color-primary-800);
+      border-color: var(--ds-color-primary-800);
+      color: #ffffff !important;
+    }
+
+    .btn-ds:active {
+      transform: translateY(1px);
+    }
+
+    .reveal a.btn-ds.btn-ghost,
+    .reveal button.btn-ds.btn-ghost,
+    .btn-ds.btn-ghost {
+      background: transparent;
+      color: var(--ds-color-primary-600) !important;
+    }
+
+    .reveal a.btn-ds.btn-ghost:hover,
+    .reveal button.btn-ds.btn-ghost:hover,
+    .btn-ds.btn-ghost:hover {
+      background: var(--ds-color-primary-50);
+      color: var(--ds-color-primary-800) !important;
+    }
+
+    /* Slide "Mão na massa" — cenário */
+    .cenario {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: .6em;
+      margin-top: 1em;
+    }
+
+    .caixa {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: var(--ds-radius-md);
+      padding: .7em .6em;
+      text-align: center;
+      color: var(--ds-color-neutral-0);
+    }
+
+    .caixa .emoji {
+      font-size: 1.5em;
+      display: block;
+      line-height: 1;
+      margin-bottom: .15em;
+    }
+
+    .caixa .titulo {
+      font-family: "Mulish", sans-serif;
+      font-weight: 800;
+      font-size: .72em;
+      display: block;
+    }
+
+    .caixa .sub {
+      font-size: .55em;
+      opacity: .85;
+      display: block;
+      margin-top: .2em;
+      line-height: 1.3;
+    }
+
+    .seta {
+      color: var(--ds-color-tertiary-500);
+      font-size: 1.3em;
+      font-weight: 800;
+    }
+
+    .cenario-legenda {
+      color: rgba(255, 255, 255, .85);
+      font-size: .6em;
+      margin-top: .9em;
+    }
+
+    /* Slide "Antes × depois" — iframes */
+    .comp {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6em;
+      margin-top: .4em;
+    }
+
+    .comp figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .25em;
+    }
+
+    .comp figcaption {
+      font-family: "Mulish", sans-serif;
+      font-weight: 700;
+      font-size: .55em;
+      color: var(--ds-color-primary-600);
+      display: flex;
+      align-items: center;
+      gap: .4em;
+    }
+
+    .comp figcaption::before {
+      content: "";
+      width: .7em;
+      height: .7em;
+      border-radius: 50%;
+      background: var(--ds-color-primary-600);
+      display: inline-block;
+    }
+
+    .comp figure:last-child figcaption::before {
+      background: var(--ds-color-green-800);
+    }
+
+    .comp figure:last-child figcaption {
+      color: var(--ds-color-green-800);
+    }
+
+    .comp iframe {
+      width: 100%;
+      height: 460px;
+      border: 1px solid var(--ds-color-neutral-200);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-neutral-0);
+    }
+
+    @media (max-width:900px) {
+      .comp {
+        grid-template-columns: 1fr;
+      }
+
+      .comp iframe {
+        height: 360px;
+      }
+
+      .cenario {
+        grid-template-columns: 1fr;
+      }
+
+      .seta {
+        transform: rotate(90deg);
+      }
+    }
+
+    /* Slide "Prompt base" — layout 2 colunas */
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: .8em;
+      align-items: start;
+      margin-top: .3em;
+    }
+
+    .prompt-grid .col-prompt {
+      margin: 0;
+      max-height: 560px;
+      overflow: auto;
+    }
+
+    .prompt-grid .col-prompt code {
+      font-size: 1em;
+    }
+
+    .prompt-grid .col-notas {
+      background: var(--ds-color-primary-50);
+      border: 1px solid var(--ds-color-primary-100);
+      border-radius: var(--ds-radius-md);
+      padding: .7em .85em;
+      font-size: .62em;
+    }
+
+    .prompt-grid .col-notas h3 {
+      font-family: "Mulish", sans-serif;
+      font-size: 1.1em;
+      color: var(--ds-color-primary-800);
+      margin: 0 0 .4em;
+    }
+
+    .prompt-grid .col-notas ol {
+      margin: 0 0 .4em 1.2em;
+      padding: 0;
+    }
+
+    .prompt-grid .col-notas li {
+      margin: .1em 0;
+    }
+
+    .prompt-grid .col-notas .prompt-acoes {
+      flex-direction: column;
+      align-items: stretch;
+      gap: .35em;
+      margin-top: .5em;
+    }
+
+    .prompt-grid .col-notas .btn-ds {
+      justify-content: center;
+      font-size: .95em;
+    }
+
+    @media (max-width:900px) {
+      .prompt-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prompt-grid .col-prompt {
+        max-height: 320px;
+      }
+    }
+
+    /* Slide "Antes × depois" — modo tela cheia */
+    .reveal section.full {
+      padding: .4em 1em;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .reveal section.full .full-titulo {
+      font-size: 1em;
+      margin: 0 0 .3em;
+      line-height: 1.2;
+    }
+
+    .comp-full {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6em;
+      margin-top: 0;
+      min-height: 0;
+    }
+
+    .comp-full figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .2em;
+      min-height: 0;
+    }
+
+    .comp-full iframe {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      height: auto;
+      border: 1px solid var(--ds-color-neutral-200);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-neutral-0);
+    }
+
+    .full-nota {
+      font-size: .5em;
+      margin: .3em 0 0;
+    }
+
+    @media (max-width:900px) {
+      .comp-full {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="reveal"><div class="slides">
+  <div class="reveal">
+    <div class="slides">
 
-<section class="capa" data-background-color="#004f9f">
-  <h1>Relatórios com IA</h1>
-  <p>Do pedido ao HTML pronto, no padrão do Governo de MS</p>
-  <p class="muted" style="color:inherit">Mini curso · Superintendência de Governo Digital (SGD)</p>
-</section>
+      <section class="capa" data-background-color="#004f9f">
+        <h1>Relatórios com IA</h1>
+        <p>Do pedido ao HTML pronto, no padrão do Governo de MS</p>
+        <p class="muted" style="color:inherit">Mini curso · Superintendência de Governo Digital (SGD)</p>
+      </section>
 
-<section>
-  <h2>O que você leva daqui</h2>
-  <div class="card">Pedir à IA um relatório e receber <strong>um arquivo HTML pronto</strong>,
-  que abre no navegador e segue o Design System de MS.</div>
-  <p class="muted">Sem programar. Sem instalar nada.</p>
-</section>
+      <section>
+        <h2>O que você leva daqui</h2>
+        <div class="card">Pedir à IA um relatório e receber <strong>um arquivo HTML pronto</strong>,
+          que abre no navegador e segue o Design System de MS.</div>
+        <p class="muted">Sem programar. Sem instalar nada.</p>
+      </section>
 
-<section>
-  <h2>Hoje cada um faz de um jeito</h2>
-  <ul>
-    <li>Texto num relatório, tabela no outro, slide no terceiro</li>
-    <li>Cores e fontes fora do padrão</li>
-    <li>Número inventado pela IA para "completar"</li>
-    <li>Ninguém sabe de onde veio cada dado</li>
-  </ul>
-</section>
+      <section>
+        <h2>Hoje cada um faz de um jeito</h2>
+        <ul>
+          <li>Texto num relatório, tabela no outro, slide no terceiro</li>
+          <li>Cores e fontes fora do padrão</li>
+          <li>Número inventado pela IA para "completar"</li>
+          <li>Ninguém sabe de onde veio cada dado</li>
+        </ul>
+      </section>
 
-<section>
-  <h2>A ideia central</h2>
-  <blockquote style="width:100%;font-size:1.1em">A IA monta rápido.<br><strong>Você</strong> responde pelo que está escrito.</blockquote>
-</section>
+      <section>
+        <h2>A ideia central</h2>
+        <blockquote style="width:100%;font-size:1.1em">A IA monta rápido.<br><strong>Você</strong> responde pelo que
+          está escrito.</blockquote>
+      </section>
 
-<section class="secao" data-background-color="#004f9f">
-  <h2>As 4 premissas</h2>
-  <p>Perguntas · Prompt base · Dados · Estrutura</p>
-</section>
+      <section class="secao" data-background-color="#004f9f">
+        <h2>As 4 premissas</h2>
+        <p>Perguntas · Prompt base · Dados · Estrutura</p>
+      </section>
 
-<section>
-  <h2>As 4 premissas</h2>
-  <div class="grid">
-    <div class="card"><span class="num">1</span><strong>Perguntas</strong><br><span class="muted">Para quem, para quê, qual decisão</span></div>
-    <div class="card"><span class="num">2</span><strong>Prompt base</strong><br><span class="muted">Pedir sempre do mesmo jeito</span></div>
-    <div class="card"><span class="num">3</span><strong>Dados</strong><br><span class="muted">O que entra e o que fica de fora</span></div>
-    <div class="card"><span class="num">4</span><strong>Estrutura</strong><br><span class="muted">Esqueleto fixo no Design System</span></div>
-  </div>
-</section>
+      <section>
+        <h2>As 4 premissas</h2>
+        <div class="grid">
+          <div class="card"><span class="num">1</span><strong>Perguntas</strong><br><span class="muted">Para quem, para
+              quê, qual decisão</span></div>
+          <div class="card"><span class="num">2</span><strong>Prompt base</strong><br><span class="muted">Pedir sempre
+              do mesmo jeito</span></div>
+          <div class="card"><span class="num">3</span><strong>Dados</strong><br><span class="muted">O que entra e o que
+              fica de fora</span></div>
+          <div class="card"><span class="num">4</span><strong>Estrutura</strong><br><span class="muted">Esqueleto fixo
+              no Design System</span></div>
+        </div>
+      </section>
 
-<section>
-  <h2><span class="num">1</span>Perguntas</h2>
-  <ul>
-    <li>Quem vai ler?</li>
-    <li>Para quê?</li>
-    <li>Qual decisão ele ajuda a tomar?</li>
-    <li>Qual período? Qual tamanho?</li>
-    <li>O que aparece primeiro?</li>
-  </ul>
-  <p class="muted">Não sabe responder? Pare e pergunte a quem pediu.</p>
-</section>
+      <section>
+        <h2><span class="num">1</span>Perguntas</h2>
+        <ul>
+          <li class="qvl">
+            <button type="button" class="qvl-btn" aria-expanded="false" aria-controls="qvl-pop-1">
+              Quem vai ler? <span class="qvl-ic" aria-hidden="true">▾</span>
+            </button>
+            <div class="qvl-pop" id="qvl-pop-1" role="dialog" aria-label="Exemplos de leitor">
+              <strong>Exemplos de leitor</strong>
+              <div class="persona"><b>Gestor</b><span>decide o que priorizar.</span></div>
+              <div class="persona"><b>Coordenador</b><span>distribui a tarefa pro time.</span></div>
+              <div class="persona"><b>Secretário</b><span>precisa do número e do risco.</span></div>
+              <div class="persona"><b>Equipe técnica</b><span>quer o detalhe do que está parado.</span></div>
+              <div class="persona"><b>Cidadão</b><span>quer saber se o serviço funciona.</span></div>
+            </div>
+          </li>
+          <li>Para quê?</li>
+          <li>Qual decisão ele ajuda a tomar?</li>
+          <li>Qual período? Qual tamanho?</li>
+          <li>O que aparece primeiro?</li>
+        </ul>
+        <p class="muted">Não sabe responder? Pare e pergunte a quem pediu. <strong>Passe o mouse em "Quem vai
+            ler?"</strong> para ver exemplos.</p>
+      </section>
 
-<section>
-  <h2><span class="num">2</span>Prompt base</h2>
-  <pre><code class="language-text" data-trim>
-Você vai montar um relatório em HTML para a SETDIG, Governo de MS.
+      <section>
+        <h2><span class="num">2</span>Prompt base</h2>
+        <div class="prompt-grid">
+          <pre class="col-prompt"><code class="language-text" data-trim id="prompt-codigo">
+[PAPEL]
+Aja como analista sênior de dados da SETDIG — Governo de MS. Transforme dado bruto em
+relatório gerencial curto, honesto e acionável.
 
-# Contexto
-- Quem vai ler: [quem]   - Para quê: [objetivo]
-- Decisão: [decisão]     - Período: [período]
+[CONTEXTO]
+- Quem vai ler: [QUEM]
+- Para quê: [OBJETIVO]
+- Decisão que apoia: [DECISÃO]
+- Período: de [INÍCIO] a [FIM]
+- Fonte: [FONTE]
 
-# Regras
-1. Use SÓ os dados abaixo. Não invente. Faltou? "a confirmar".
-2. Linguagem simples.
-3. Devolva UM arquivo HTML completo, CSS dentro de &lt;style&gt;.
-4. Só as variáveis --ds-* do Design System para cor e espaço.
-5. Mulish nos títulos, Open Sans no texto.
-6. Links em nova aba. 7. Funciona no celular.
+[OBJETIVO]
+Gere um relatório com:
+1. Frase-âncora com o resultado principal.
+2. KPIs com evidência numérica real.
+3. Tendências e destaques positivos.
+4. Gargalos/bloqueios no topo da seção "Atenção", com impacto e decisão sugerida.
+5. 2 a 4 recomendações práticas.
 
-# Estrutura
-Faixa azul · Destaques · Detalhe · Atenção · Rodapé SETDIG
+Regras:
+- Use SOMENTE o que estiver em [DADOS].
+- Linguagem simples, sem jargão.
+- Nenhum dado pessoal sensível.
+- Se faltar contexto, PARE E PERGUNTE antes de responder.
 
-# Dados
+[FORMATO]
+Preencha o template-relatorio.html (anexado). Substitua {{...}} pelo conteúdo real.
+Não altere paleta nem estrutura. Rodapé: SETDIG.
+
+[DADOS]
 [cole aqui]
   </code></pre>
-  <p class="muted">Texto completo, com as cores, na página "Prompt base" do site.</p>
-</section>
+          <aside class="col-notas">
+            <h3>Como usar</h3>
+            <ol>
+              <li>Baixe o prompt e o template.</li>
+              <li>Cole o prompt no chat da IA.</li>
+              <li>Anexe o template HTML.</li>
+              <li>Cole os dados em <code>[DADOS]</code>.</li>
+              <li>A IA pergunta se faltar contexto.</li>
+            </ol>
+            <div class="prompt-acoes">
+              <a class="btn-ds" href="assets/prompt-base.txt" download="prompt-relatorio-setdig.txt">
+                <span aria-hidden="true">⬇</span> Baixar prompt
+              </a>
+              <a class="btn-ds" href="assets/template-relatorio.html" download="template-relatorio-setdig.html">
+                <span aria-hidden="true">⬇</span> Baixar template
+              </a>
+              <button type="button" class="btn-ds btn-ghost" id="btn-copiar-prompt" aria-describedby="copia-msg">
+                <span aria-hidden="true">📋</span> Copiar prompt
+              </button>
+              <span id="copia-msg" class="muted" role="status" aria-live="polite"></span>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-<section>
-  <h2>A regra mais importante</h2>
-  <div class="card no">"Use SÓ os dados que eu entreguei. Não invente número, nome ou data."</div>
-  <p>Sem ela, a IA preenche o que falta, e o erro vai com a sua assinatura.</p>
-</section>
+      <section>
+        <h2>A regra mais importante</h2>
+        <div class="card no">"Use SÓ os dados que eu entreguei. Não invente número, nome ou data."</div>
+        <p>Sem ela, a IA preenche o que falta, e o erro vai com a sua assinatura.</p>
+      </section>
 
-<section>
-  <h2><span class="num">3</span>Dados</h2>
-  <div class="grid">
-    <div class="card ok"><strong>Leve</strong><ul><li>Só o período</li><li>Só as colunas úteis</li><li>Fonte e data</li></ul></div>
-    <div class="card no"><strong>Nunca leve</strong><ul><li>CPF, telefone, endereço</li><li>Senha, token</li><li>Dado sigiloso</li></ul></div>
+      <section>
+        <h2><span class="num">3</span>Dados</h2>
+        <div class="grid">
+          <div class="card ok"><strong>Leve</strong>
+            <ul>
+              <li>Só o período</li>
+              <li>Só as colunas úteis</li>
+              <li>Fonte e data</li>
+            </ul>
+          </div>
+          <div class="card no"><strong>Nunca leve</strong>
+            <ul>
+              <li>CPF, telefone, endereço</li>
+              <li>Senha, token</li>
+              <li>Dado sigiloso</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Precisa do número? Mande o total, não a lista de pessoas.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">4</span>Estrutura</h2>
+        <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Faixa azul:
+          título · período · números</div>
+        <div class="card">Destaques: cards numerados</div>
+        <div class="card">Detalhe: listas ou tabela por tema</div>
+        <div class="card">Atenção: riscos e pendências</div>
+        <div class="card" style="background:var(--ds-color-neutral-200)">Rodapé SETDIG</div>
+      </section>
+
+      <section>
+        <h2>As cores dizem algo</h2>
+        <div class="grid">
+          <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Azul: marca e
+            links</div>
+          <div class="card ok">Verde: concluído</div>
+          <div class="card" style="background:var(--ds-color-orange-100);color:var(--ds-color-orange-800)">Laranja: em
+            andamento</div>
+          <div class="card no">Vermelho: bloqueado</div>
+        </div>
+        <p class="muted">Toda cor vem de uma variável <code>--ds-*</code>.</p>
+      </section>
+
+      <section class="secao" data-background-color="#004f9f">
+        <h2>Mão na massa</h2>
+        <p>Um relatório semanal, do começo ao fim</p>
+        <div class="cenario" aria-label="Fluxo: dado bruto, IA, relatório final">
+          <div class="caixa">
+            <span class="emoji" aria-hidden="true">📋</span>
+            <span class="titulo">Dado bruto</span>
+            <span class="sub">Planilha, PDF, texto solto do time.</span>
+          </div>
+          <span class="seta" aria-hidden="true">→</span>
+          <div class="caixa">
+            <span class="emoji" aria-hidden="true">🤖</span>
+            <span class="titulo">IA + prompt base</span>
+            <span class="sub">ChatGPT, Claude, Gemini ou Copilot.</span>
+          </div>
+          <span class="seta" aria-hidden="true">→</span>
+          <div class="caixa">
+            <span class="emoji" aria-hidden="true">📄</span>
+            <span class="titulo">Relatório HTML</span>
+            <span class="sub">Pronto para a chefia, no padrão MS.</span>
+          </div>
+        </div>
+        <p class="cenario-legenda">É o caminho que vamos percorrer juntos agora.</p>
+      </section>
+
+      <section class="full">
+        <h2 class="full-titulo">Antes × depois · texto solto virando relatório</h2>
+        <div class="comp comp-full">
+          <figure>
+            <figcaption>Antes · dado bruto</figcaption>
+            <iframe src="assets/relatorio-antonio-bruto.html" title="Dado bruto" loading="lazy"></iframe>
+          </figure>
+          <figure>
+            <figcaption>Depois · HTML gerado pela IA</figcaption>
+            <iframe src="../exemplos/relatorio-demanda-semana.html" title="Relatório final gerado pela IA"
+              loading="lazy"></iframe>
+          </figure>
+        </div>
+        <p class="muted full-nota">Mesmos dados. Prompt base + template cuidam da transformação. <a
+            href="../exemplos/antes-demanda-antonio/" target="_blank" rel="noopener">Ver passo a passo</a>.</p>
+      </section>
+
+      <section>
+        <h2>O caminho</h2>
+        <p><span class="num">1</span>Responder as perguntas</p>
+        <p><span class="num">2</span>Exportar os dados do TFS</p>
+        <p><span class="num">3</span>Colar no prompt base</p>
+        <p><span class="num">4</span>Salvar o HTML e abrir no navegador</p>
+        <p><span class="num">5</span>Passar o checklist</p>
+      </section>
+
+      <section>
+        <h2>O resultado</h2>
+        <p><a href="../exemplos/relatorio-semanal.html" target="_blank" rel="noopener">Abrir o relatório de exemplo</a>
+        </p>
+        <p class="muted">Dados fictícios. Mesmo modelo dos relatórios da SGD.</p>
+      </section>
+
+      <section>
+        <h2>Checklist antes de enviar</h2>
+        <ul>
+          <li>Cada número está nos dados</li>
+          <li>A contagem bate</li>
+          <li>Nada de "a confirmar" esquecido</li>
+          <li>Sem dado pessoal</li>
+          <li>Cores do Design System, abre no celular</li>
+          <li>Links funcionam e abrem em nova aba</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Ajustes: um de cada vez</h2>
+        <div class="card ok">"Deixe os cards em duas colunas."</div>
+        <div class="card ok">"Mova a seção Atenção para o topo."</div>
+        <div class="card no">"Melhore tudo."</div>
+        <p class="muted">Pedido amplo faz a IA mexer nos números.</p>
+      </section>
+
+      <section>
+        <h2>Depois deste curso</h2>
+        <ul>
+          <li><strong>Reaproveitar:</strong> mande o HTML antigo e peça "troque só os dados"</li>
+          <li><strong>Publicar:</strong> GitHub Pages ou Artifact, com um link</li>
+        </ul>
+      </section>
+
+      <section class="capa" data-background-color="#004f9f">
+        <h2>Material completo</h2>
+        <p><a href="../" style="color:var(--ds-color-tertiary-500)">fabioramos-02.github.io/mini-curso-ia</a></p>
+        <p class="muted" style="color:inherit">Secretaria-Executiva de Transformação Digital — SETDIG</p>
+      </section>
+
+    </div>
   </div>
-  <p class="muted">Precisa do número? Mande o total, não a lista de pessoas.</p>
-</section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+  <script>Reveal.initialize({ hash: true, slideNumber: "c/t", transition: "fade", center: true });</script>
+  <script>
+    // Tooltip "Quem vai ler?" — toggle no clique + fecha com Esc / clique fora
+    (function () {
+      document.querySelectorAll('.qvl').forEach(function (qvl) {
+        var btn = qvl.querySelector('.qvl-btn');
+        if (!btn) return;
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var aberto = qvl.classList.toggle('aberto');
+          btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        document.querySelectorAll('.qvl.aberto').forEach(function (qvl) {
+          if (!qvl.contains(e.target)) {
+            qvl.classList.remove('aberto');
+            var btn = qvl.querySelector('.qvl-btn');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('.qvl.aberto').forEach(function (qvl) {
+          qvl.classList.remove('aberto');
+          var btn = qvl.querySelector('.qvl-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
 
-<section>
-  <h2><span class="num">4</span>Estrutura</h2>
-  <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Faixa azul: título · período · números</div>
-  <div class="card">Destaques: cards numerados</div>
-  <div class="card">Detalhe: listas ou tabela por tema</div>
-  <div class="card">Atenção: riscos e pendências</div>
-  <div class="card" style="background:var(--ds-color-neutral-200)">Rodapé SETDIG</div>
-</section>
-
-<section>
-  <h2>As cores dizem algo</h2>
-  <div class="grid">
-    <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Azul: marca e links</div>
-    <div class="card ok">Verde: concluído</div>
-    <div class="card" style="background:var(--ds-color-orange-100);color:var(--ds-color-orange-800)">Laranja: em andamento</div>
-    <div class="card no">Vermelho: bloqueado</div>
-  </div>
-  <p class="muted">Toda cor vem de uma variável <code>--ds-*</code>.</p>
-</section>
-
-<section class="secao" data-background-color="#004f9f">
-  <h2>Mão na massa</h2>
-  <p>Um relatório semanal, do começo ao fim</p>
-</section>
-
-<section>
-  <h2>O caminho</h2>
-  <p><span class="num">1</span>Responder as perguntas</p>
-  <p><span class="num">2</span>Exportar os dados do TFS</p>
-  <p><span class="num">3</span>Colar no prompt base</p>
-  <p><span class="num">4</span>Salvar o HTML e abrir no navegador</p>
-  <p><span class="num">5</span>Passar o checklist</p>
-</section>
-
-<section>
-  <h2>O resultado</h2>
-  <p><a href="../exemplos/relatorio-semanal.html" target="_blank" rel="noopener">Abrir o relatório de exemplo</a></p>
-  <p class="muted">Dados fictícios. Mesmo modelo dos relatórios da SGD.</p>
-</section>
-
-<section>
-  <h2>Checklist antes de enviar</h2>
-  <ul>
-    <li>Cada número está nos dados</li>
-    <li>A contagem bate</li>
-    <li>Nada de "a confirmar" esquecido</li>
-    <li>Sem dado pessoal</li>
-    <li>Cores do Design System, abre no celular</li>
-    <li>Links funcionam e abrem em nova aba</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Ajustes: um de cada vez</h2>
-  <div class="card ok">"Deixe os cards em duas colunas."</div>
-  <div class="card ok">"Mova a seção Atenção para o topo."</div>
-  <div class="card no">"Melhore tudo."</div>
-  <p class="muted">Pedido amplo faz a IA mexer nos números.</p>
-</section>
-
-<section>
-  <h2>Depois deste curso</h2>
-  <ul>
-    <li><strong>Reaproveitar:</strong> mande o HTML antigo e peça "troque só os dados"</li>
-    <li><strong>Publicar:</strong> GitHub Pages ou Artifact, com um link</li>
-    <li><strong>Automatizar:</strong> IA ligada direto no TFS e no BI</li>
-  </ul>
-</section>
-
-<section class="capa" data-background-color="#004f9f">
-  <h2>Material completo</h2>
-  <p><a href="../" style="color:var(--ds-color-tertiary-500)">fabioramos-02.github.io/mini-curso-ia</a></p>
-  <p class="muted" style="color:inherit">Secretaria-Executiva de Transformação Digital — SETDIG</p>
-</section>
-
-</div></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
-<script>Reveal.initialize({ hash:true, slideNumber:"c/t", transition:"fade", center:true });</script>
+    // Botão "Copiar" do prompt base — busca o .txt e copia pro clipboard
+    (function () {
+      var btn = document.getElementById('btn-copiar-prompt');
+      var msg = document.getElementById('copia-msg');
+      if (!btn || !msg) return;
+      btn.addEventListener('click', async function () {
+        btn.disabled = true;
+        try {
+          var r = await fetch('assets/prompt-base.txt', { cache: 'no-store' });
+          if (!r.ok) throw new Error('http ' + r.status);
+          var txt = await r.text();
+          await navigator.clipboard.writeText(txt);
+          msg.textContent = 'Copiado! Cole na IA.';
+        } catch (err) {
+          // fallback: copia o <pre> visível
+          try {
+            var pre = document.getElementById('prompt-codigo');
+            await navigator.clipboard.writeText(pre ? pre.innerText : '');
+            msg.textContent = 'Copiado (versão curta).';
+          } catch (e2) {
+            msg.textContent = 'Não deu para copiar. Use "Baixar prompt".';
+          }
+        }
+        setTimeout(function () { msg.textContent = ''; btn.disabled = false; }, 2500);
+      });
+    })();
+  </script>
 </body>
+
 </html>

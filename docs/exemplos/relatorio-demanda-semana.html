@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demandas da semana — 20 a 24/10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+@layer ds, app;
+@layer ds {
+  :root {
+    --ds-color-neutral-0:#ffffff; --ds-color-neutral-100:#f9f9f9; --ds-color-neutral-200:#d5d5d5;
+    --ds-color-neutral-700:#686867; --ds-color-neutral-900:#30302e;
+    --ds-color-primary-50:#f5f8fb; --ds-color-primary-100:#e6edf5; --ds-color-primary-600:#004f9f;
+    --ds-color-primary-800:#002f5f; --ds-color-primary-900:#002040;
+    --ds-color-tertiary-500:#ffd500;
+    --ds-color-orange-100:#fff3ea; --ds-color-orange-800:#994f1a;
+    --ds-color-green-100:#eaf6ed; --ds-color-green-800:#18622e;
+    --ds-color-red-100:#fbe9ea; --ds-color-red-700:#a91e23;
+    --ds-color-background:var(--ds-color-neutral-0); --ds-color-surface:var(--ds-color-neutral-0);
+    --ds-color-surface-muted:var(--ds-color-neutral-100); --ds-color-surface-tint:var(--ds-color-primary-50);
+    --ds-color-border:var(--ds-color-neutral-200); --ds-color-text-default:var(--ds-color-neutral-900);
+    --ds-color-text-muted:var(--ds-color-neutral-700); --ds-color-link:var(--ds-color-primary-600);
+    --ds-color-link-hover:var(--ds-color-primary-800); --ds-color-focus:var(--ds-color-tertiary-500);
+    --ds-color-brand-bg:var(--ds-color-primary-600); --ds-color-brand-fg:var(--ds-color-neutral-0);
+    --ds-color-accent-soft:var(--ds-color-primary-100); --ds-color-accent-soft-fg:var(--ds-color-primary-900);
+    --ds-color-status-warning-bg:var(--ds-color-orange-100); --ds-color-status-warning-fg:var(--ds-color-orange-800);
+    --ds-color-status-success-bg:var(--ds-color-green-100); --ds-color-status-success-fg:var(--ds-color-green-800);
+    --ds-color-status-danger-bg:var(--ds-color-red-100); --ds-color-status-danger-fg:var(--ds-color-red-700);
+    --ds-font-family-heading:"Mulish",sans-serif; --ds-font-family-sans:"Open Sans",sans-serif;
+    --ds-spacing-4:.25rem; --ds-spacing-8:.5rem; --ds-spacing-12:.75rem; --ds-spacing-16:1rem;
+    --ds-spacing-24:1.5rem; --ds-spacing-32:2rem; --ds-spacing-48:3rem;
+    --ds-radius-sm:8px; --ds-radius-md:12px; --ds-radius-lg:16px;
+    --ds-shadow-sm:0 2px 4px rgba(29,29,27,.08);
+  }
+}
+@layer app {
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ds-color-background); color:var(--ds-color-text-default);
+         font-family:var(--ds-font-family-sans); font-size:1rem; line-height:1.5; }
+  a { color:var(--ds-color-link); font-weight:600; }
+  a:hover { color:var(--ds-color-link-hover); }
+  :focus-visible { outline:3px solid var(--ds-color-focus); outline-offset:2px; }
+  h1,h2,h3 { font-family:var(--ds-font-family-heading); margin:0; }
+  header { background:var(--ds-color-brand-bg); color:var(--ds-color-brand-fg); padding:var(--ds-spacing-32) var(--ds-spacing-16); }
+  header p { margin:var(--ds-spacing-4) 0 0; }
+  main, .wrap { max-width:56rem; margin:0 auto; }
+  main { padding:var(--ds-spacing-24) var(--ds-spacing-16) var(--ds-spacing-48); }
+  h1 { font-size:2rem; line-height:1.2; }
+  h2 { font-size:1.5rem; margin:var(--ds-spacing-32) 0 var(--ds-spacing-16); }
+  h3 { font-size:1.125rem; }
+  .ancora { font-size:1.125rem; font-weight:600; margin-top:var(--ds-spacing-16); }
+  .ancora strong { font-family:var(--ds-font-family-heading); font-weight:800; }
+  .resumo { display:flex; flex-wrap:wrap; gap:var(--ds-spacing-12); margin-top:var(--ds-spacing-16); }
+  .resumo span { background:var(--ds-color-surface); color:var(--ds-color-text-default); border-radius:var(--ds-radius-sm);
+                 padding:var(--ds-spacing-4) var(--ds-spacing-12); font-weight:600; }
+  .atencao { background:var(--ds-color-status-danger-bg); border:2px solid var(--ds-color-status-danger-fg);
+             border-radius:var(--ds-radius-md); padding:var(--ds-spacing-16); margin-top:var(--ds-spacing-16);
+             box-shadow:var(--ds-shadow-sm); }
+  .atencao h2 { color:var(--ds-color-status-danger-fg); margin:0 0 var(--ds-spacing-8); font-size:1.125rem; }
+  .atencao p { margin:var(--ds-spacing-4) 0; }
+  .atencao .label { display:inline-block; background:var(--ds-color-status-danger-fg); color:var(--ds-color-brand-fg);
+                    border-radius:var(--ds-radius-sm); padding:var(--ds-spacing-4) var(--ds-spacing-8);
+                    font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+                    margin-bottom:var(--ds-spacing-8); }
+  ul.lista { list-style:none; padding:0; margin:0; display:grid; gap:var(--ds-spacing-8); }
+  ul.lista li { background:var(--ds-color-surface-tint); border:1px solid var(--ds-color-border);
+                border-radius:var(--ds-radius-sm); padding:var(--ds-spacing-12) var(--ds-spacing-16); }
+  ul.lista li h3 { font-size:1rem; margin:0 0 var(--ds-spacing-4); }
+  ul.lista li p { margin:0; color:var(--ds-color-text-muted); font-size:.9375rem; }
+  ul.lista.feitas li { background:var(--ds-color-status-success-bg); border-color:var(--ds-color-status-success-fg); }
+  ul.lista.feitas li h3 { color:var(--ds-color-status-success-fg); }
+  ul.lista.andando li { background:var(--ds-color-status-warning-bg); border-color:var(--ds-color-status-warning-fg); }
+  ul.lista.andando li h3 { color:var(--ds-color-status-warning-fg); }
+  footer { background:var(--ds-color-surface-muted); color:var(--ds-color-text-muted);
+           padding:var(--ds-spacing-24) var(--ds-spacing-16); font-size:.875rem; }
+  footer p { margin:var(--ds-spacing-4) 0; }
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Demandas da semana · 20 a 24/10</h1>
+  <p>Antônio · Superintendência de Governo Digital (SGD / SETDIG)</p>
+  <p class="ancora">
+    <strong>2 entregues</strong>, <strong>1 bloqueada</strong>, <strong>2 em andamento</strong>.
+  </p>
+  <div class="resumo">
+    <span>5 demandas no total</span>
+    <span>1 pede decisão da chefia</span>
+  </div>
+</div></header>
+<main>
+
+  <section class="atencao" aria-labelledby="atencao-titulo">
+    <span class="label">Pede decisão</span>
+    <h2 id="atencao-titulo">ChatBot está parado por falta de API KEY</h2>
+    <p><strong>O que falta:</strong> liberar uma chave de API para o Antônio concluir o desenvolvimento.</p>
+    <p><strong>Impacto se continuar parado:</strong> entrega do ChatBot escorrega para a próxima quinzena.</p>
+    <p><strong>Decisão sugerida:</strong> abrir chamado para a STI reservar a chave ainda nesta semana.</p>
+  </section>
+
+  <h2>Entregues</h2>
+  <ul class="lista feitas">
+    <li>
+      <h3>Levantamento das IAs do novo portal</h3>
+      <p>
+        Comparou 4 modelos abertos (qwen3, nemotron, gpt-oss e qwen3-embedding), listou pontos
+        fortes e recomendou o qwen3 para chat geral e código.
+      </p>
+    </li>
+    <li>
+      <h3>Envio dos SiteMaps para o Google Search Console</h3>
+      <p>
+        Subiu os sitemaps e encontrou um arquivo com HTML embutido. Encaminhou para o Pedro
+        refazer.
+      </p>
+    </li>
+  </ul>
+
+  <h2>Em andamento</h2>
+  <ul class="lista andando">
+    <li>
+      <h3>Participação no alinhamento sobre os módulos da X-via</h3>
+      <p>Reunião feita. Próximo passo: trazer os pontos acordados para o planejamento da equipe.</p>
+    </li>
+    <li>
+      <h3>Homologação da carta de serviço</h3>
+      <p>Em teste. Validação com o órgão responsável antes de publicar no portal.</p>
+    </li>
+  </ul>
+
+</main>
+<footer><div class="wrap">
+  <p>Secretaria-Executiva de Transformação Digital — SETDIG · Superintendência de Governo Digital.</p>
+  <p>Relato recebido do Antônio no dia 24/10, às 17h. Exemplo didático do mini curso de relatórios com IA.</p>
+</div></footer>
+</body>
+</html>

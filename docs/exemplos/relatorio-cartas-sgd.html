@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartas de serviço — rodada de outubro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+@layer ds, app;
+@layer ds {
+  :root {
+    --ds-color-neutral-0:#ffffff; --ds-color-neutral-100:#f9f9f9; --ds-color-neutral-200:#d5d5d5;
+    --ds-color-neutral-700:#686867; --ds-color-neutral-900:#30302e;
+    --ds-color-primary-50:#f5f8fb; --ds-color-primary-100:#e6edf5; --ds-color-primary-600:#004f9f;
+    --ds-color-primary-800:#002f5f; --ds-color-primary-900:#002040;
+    --ds-color-tertiary-500:#ffd500;
+    --ds-color-orange-100:#fff3ea; --ds-color-orange-800:#994f1a;
+    --ds-color-green-100:#eaf6ed; --ds-color-green-800:#18622e;
+    --ds-color-red-100:#fbe9ea; --ds-color-red-700:#a91e23;
+    --ds-color-background:var(--ds-color-neutral-0); --ds-color-surface:var(--ds-color-neutral-0);
+    --ds-color-surface-muted:var(--ds-color-neutral-100); --ds-color-surface-tint:var(--ds-color-primary-50);
+    --ds-color-border:var(--ds-color-neutral-200); --ds-color-text-default:var(--ds-color-neutral-900);
+    --ds-color-text-muted:var(--ds-color-neutral-700); --ds-color-link:var(--ds-color-primary-600);
+    --ds-color-link-hover:var(--ds-color-primary-800); --ds-color-focus:var(--ds-color-tertiary-500);
+    --ds-color-brand-bg:var(--ds-color-primary-600); --ds-color-brand-fg:var(--ds-color-neutral-0);
+    --ds-color-accent-soft:var(--ds-color-primary-100); --ds-color-accent-soft-fg:var(--ds-color-primary-900);
+    --ds-color-status-warning-bg:var(--ds-color-orange-100); --ds-color-status-warning-fg:var(--ds-color-orange-800);
+    --ds-color-status-success-bg:var(--ds-color-green-100); --ds-color-status-success-fg:var(--ds-color-green-800);
+    --ds-color-status-danger-bg:var(--ds-color-red-100); --ds-color-status-danger-fg:var(--ds-color-red-700);
+    --ds-font-family-heading:"Mulish",sans-serif; --ds-font-family-sans:"Open Sans",sans-serif;
+    --ds-spacing-4:.25rem; --ds-spacing-8:.5rem; --ds-spacing-12:.75rem; --ds-spacing-16:1rem;
+    --ds-spacing-24:1.5rem; --ds-spacing-32:2rem; --ds-spacing-48:3rem;
+    --ds-radius-sm:8px; --ds-radius-md:12px; --ds-radius-lg:16px;
+    --ds-shadow-sm:0 2px 4px rgba(29,29,27,.08);
+  }
+}
+@layer app {
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ds-color-background); color:var(--ds-color-text-default);
+         font-family:var(--ds-font-family-sans); font-size:1rem; line-height:1.5; }
+  a { color:var(--ds-color-link); font-weight:600; }
+  a:hover { color:var(--ds-color-link-hover); }
+  :focus-visible { outline:3px solid var(--ds-color-focus); outline-offset:2px; }
+  h1,h2,h3 { font-family:var(--ds-font-family-heading); margin:0; }
+  header { background:var(--ds-color-brand-bg); color:var(--ds-color-brand-fg); padding:var(--ds-spacing-32) var(--ds-spacing-16); }
+  header p { margin:var(--ds-spacing-4) 0 0; }
+  main, .wrap { max-width:56rem; margin:0 auto; }
+  main { padding:var(--ds-spacing-24) var(--ds-spacing-16) var(--ds-spacing-48); }
+  h1 { font-size:2rem; line-height:1.2; }
+  h2 { font-size:1.5rem; margin:var(--ds-spacing-32) 0 var(--ds-spacing-16); }
+  h3 { font-size:1.125rem; }
+  .ancora { font-size:1.125rem; font-weight:600; margin-top:var(--ds-spacing-16); }
+  .ancora strong { font-family:var(--ds-font-family-heading); font-weight:800; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:var(--ds-spacing-12); margin-top:var(--ds-spacing-16); }
+  .kpi { background:var(--ds-color-surface); color:var(--ds-color-text-default); border-radius:var(--ds-radius-sm);
+         padding:var(--ds-spacing-12); text-align:center; }
+  .kpi .num { font-family:var(--ds-font-family-heading); font-weight:800; font-size:1.75rem; display:block; }
+  .kpi.ok .num { color:var(--ds-color-status-success-fg); }
+  .kpi.alerta .num { color:var(--ds-color-status-danger-fg); }
+  .kpi .rot { font-size:.875rem; color:var(--ds-color-text-muted); }
+
+  .atencao { background:var(--ds-color-status-danger-bg); border:2px solid var(--ds-color-status-danger-fg);
+             border-radius:var(--ds-radius-md); padding:var(--ds-spacing-16); margin-top:var(--ds-spacing-16);
+             box-shadow:var(--ds-shadow-sm); }
+  .atencao h2 { color:var(--ds-color-status-danger-fg); margin:0 0 var(--ds-spacing-8); font-size:1.125rem; }
+  .atencao ul { list-style:none; padding:0; margin:var(--ds-spacing-8) 0 0; display:grid; gap:var(--ds-spacing-8); }
+  .atencao li { background:var(--ds-color-surface); border-radius:var(--ds-radius-sm); padding:var(--ds-spacing-12); }
+  .atencao li h3 { font-size:1rem; margin:0 0 var(--ds-spacing-4); color:var(--ds-color-text-default); }
+  .atencao li p { margin:var(--ds-spacing-4) 0 0; color:var(--ds-color-text-muted); font-size:.9375rem; }
+  .atencao .nota { font-family:var(--ds-font-family-heading); font-weight:800;
+                   color:var(--ds-color-status-danger-fg); background:var(--ds-color-status-danger-bg);
+                   border-radius:var(--ds-radius-sm); padding:0 var(--ds-spacing-8); font-size:.875rem; margin-left:var(--ds-spacing-8); }
+
+  table.orgaos { width:100%; border-collapse:collapse; margin-top:var(--ds-spacing-16); background:var(--ds-color-surface); }
+  table.orgaos th, table.orgaos td { padding:var(--ds-spacing-12); text-align:left; border-bottom:1px solid var(--ds-color-border); }
+  table.orgaos th { background:var(--ds-color-brand-bg); color:var(--ds-color-brand-fg); font-family:var(--ds-font-family-heading); }
+  table.orgaos td.num { font-family:var(--ds-font-family-heading); font-weight:700; text-align:right; }
+  table.orgaos tr:last-child td { border-bottom:0; }
+  .pill { display:inline-block; border-radius:var(--ds-radius-sm); padding:var(--ds-spacing-4) var(--ds-spacing-8);
+          font-size:.8125rem; font-weight:600; }
+  .pill.ok { background:var(--ds-color-status-success-bg); color:var(--ds-color-status-success-fg); }
+  .pill.alerta { background:var(--ds-color-status-danger-bg); color:var(--ds-color-status-danger-fg); }
+
+  footer { background:var(--ds-color-surface-muted); color:var(--ds-color-text-muted);
+           padding:var(--ds-spacing-24) var(--ds-spacing-16); font-size:.875rem; }
+  footer p { margin:var(--ds-spacing-4) 0; }
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Cartas de serviço · rodada de outubro</h1>
+  <p>SGD / SETDIG · acompanhamento Lei nº 15.263/2025 (linguagem simples)</p>
+  <p class="ancora">
+    <strong>10 cartas no padrão</strong>, <strong>3 abaixo da meta</strong> (nota mínima 7,0).
+    Foco da próxima rodada: SES-MS, DETRAN-MS e SEJUSP-MS.
+  </p>
+  <div class="kpis">
+    <div class="kpi"><span class="num">13</span><span class="rot">cartas na rodada</span></div>
+    <div class="kpi ok"><span class="num">10</span><span class="rot">no padrão</span></div>
+    <div class="kpi alerta"><span class="num">3</span><span class="rot">abaixo da meta</span></div>
+    <div class="kpi"><span class="num">4</span><span class="rot">órgãos acompanhados</span></div>
+  </div>
+</div></header>
+<main>
+
+  <section class="atencao" aria-labelledby="atencao-titulo">
+    <h2 id="atencao-titulo">Pontos abaixo da meta — foco da próxima rodada</h2>
+    <ul>
+      <li>
+        <h3>Recorrer multa <span class="nota">4,5</span></h3>
+        <p><strong>DETRAN-MS.</strong> Linguagem jurídica demais. Reescrever usando termos do dia a dia e um exemplo prático.</p>
+      </li>
+      <li>
+        <h3>Atestado de bons antecedentes <span class="nota">5,0</span></h3>
+        <p><strong>SEJUSP-MS.</strong> Faltam exemplos para o cidadão entender quando o atestado é exigido.</p>
+      </li>
+      <li>
+        <h3>Marcar exame de imagem <span class="nota">5,5</span></h3>
+        <p><strong>SES-MS.</strong> Reduzir termos técnicos de saúde. Trocar "diagnóstico por imagem" por "exame como raio-x, ultrassom ou ressonância".</p>
+      </li>
+    </ul>
+  </section>
+
+  <h2>Como está cada órgão</h2>
+  <table class="orgaos">
+    <thead>
+      <tr><th>Órgão</th><th>Cartas</th><th>No padrão</th><th>Nota média</th><th>Situação</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SED-MS</td><td class="num">3</td><td class="num">2</td><td class="num">7,3</td><td><span class="pill ok">em dia</span></td></tr>
+      <tr><td>SES-MS</td><td class="num">3</td><td class="num">2</td><td class="num">7,0</td><td><span class="pill alerta">1 abaixo</span></td></tr>
+      <tr><td>DETRAN-MS</td><td class="num">4</td><td class="num">3</td><td class="num">6,8</td><td><span class="pill alerta">1 abaixo</span></td></tr>
+      <tr><td>SEJUSP-MS</td><td class="num">3</td><td class="num">2</td><td class="num">6,5</td><td><span class="pill alerta">1 abaixo</span></td></tr>
+    </tbody>
+  </table>
+
+</main>
+<footer><div class="wrap">
+  <p>Secretaria-Executiva de Transformação Digital — SETDIG · Superintendência de Governo Digital.</p>
+  <p>Nota de 0 a 10, atribuída pelo time de linguagem simples da SGD. Não é pesquisa com cidadão.</p>
+  <p>Dados fictícios para o mini curso de relatórios com IA. Rodada de outubro / 2025.</p>
+</div></footer>
+</body>
+</html>

@@ -52,3 +52,16 @@ O que conferir nele:
 
 Antes de enviar, passe pelo [checklist](08-checklist.md). No exemplo: 7 pendências na lista,
 7 nos dados. Bateu.
+
+## 6. Outros exemplos com o time da SGD
+
+Dois casos novos, montados a partir de insumos reais do time, para você ver o antes e o
+depois:
+
+- **[Demandas da semana — relato do Antônio](exemplos/antes-demanda-antonio.md)**: texto
+  corrido virou relatório com bloqueio em destaque.
+- **[Cartas de serviço revisadas](exemplos/antes-cartas-sgd.md)**: planilha de 13 linhas
+  virou foco para a próxima rodada em 3 serviços.
+
+Os dois aplicam a mesma estrutura do exemplo acima, com uma frase-âncora no topo que já
+entrega a conclusão.

@@ -22,3 +22,25 @@ passos 1 a 8.
 
 !!! note "Um passo de cada vez"
     Primeiro, todo mundo gera o HTML com confiança. Publicar e automatizar vêm depois.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** como reaproveitar o relatório da semana passada?
+
+**Quando usar:** na semana seguinte, numa conversa nova. Anexe o HTML que ficou bom, em vez do template.
+
+!!! example "O prompt"
+    ```text
+    [FORMATO]
+    Mantenha exatamente o layout do relatorio-semana-anterior.html (anexado).
+    Troque só os textos e os números pelos dados abaixo. Não mude cores, ordem nem seções.
+
+    [CONTEXTO]
+    - Período: de 10/11 a 14/11/2026
+
+    [DADOS]
+    <!-- cole aqui os dados da nova semana -->
+    [FIM DOS DADOS]
+    ```
+
+Os blocos `[PAPEL]`, `[ESCOPO]` e `[OBJETIVO]` continuam iguais aos do prompt base. Mudam o `[FORMATO]` (o molde agora é o seu relatório antigo), o período e os dados.

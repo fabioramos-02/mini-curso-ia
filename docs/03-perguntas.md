@@ -18,3 +18,46 @@ Responda por escrito, em uma linha cada. Essas respostas entram no prompt.
 ## Exercício
 
 Pense num relatório que você fez no último mês e responda as sete perguntas acima.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** para quem é o relatório e que decisão ele apoia?
+
+**O que entra no prompt:** o bloco `[CONTEXTO]`, com as respostas às perguntas desta página. O pedido solto sai: agora o contexto diz o que antes ficava subentendido.
+
+??? quote "Como estava (fim da sessão anterior)"
+    ```text
+    [PAPEL]
+
+    [ESCOPO]
+
+    [CONTEXTO]
+
+    [OBJETIVO]
+
+    [FORMATO]
+
+    [DADOS]
+
+    Faz um relatório das tarefas da semana.
+    ```
+
+!!! example "Como ficou — linhas novas marcadas com ◀ novo"
+    ```text
+    [PAPEL]
+
+    [ESCOPO]
+
+    [CONTEXTO]
+    - Quem vai ler: a Superintendente, na reunião de segunda  ◀ novo
+    - Para quê: saber o que o time faz na semana  ◀ novo
+    - Decisão que o relatório apoia: o que priorizar e o que pode esperar  ◀ novo
+    - Período: de 03/11 a 07/11/2026  ◀ novo
+    - Fonte: TFS, tarefas abertas do time, exportadas em 03/11  ◀ novo
+
+    [OBJETIVO]
+
+    [FORMATO]
+
+    [DADOS]
+    ```

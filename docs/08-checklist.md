@@ -29,3 +29,22 @@ Abra o arquivo no navegador e confira item por item. Leva 5 minutos.
 !!! warning "Achou erro?"
     Corrija o dado e peça à IA para gerar de novo, ou peça só o ajuste pontual.
     Não envie com erro "porque a IA fez": quem assina o relatório é você.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** como a IA me ajuda a conferir, sem mexer no que está certo?
+
+**Quando usar:** logo depois de a IA devolver o HTML, na mesma conversa. São duas mensagens curtas: uma para conferir e outra para ajustar.
+
+!!! example "O prompt"
+    ```text
+    Antes de eu enviar, liste cada número que aparece no relatório e a linha de [DADOS]
+    de onde ele veio. Se algum número não estiver nos dados, marque como "a conciliar".
+    Não altere o HTML agora.
+
+    ---
+
+    Mova a seção "Atenção" para o topo. Não mexa em nenhum número nem no texto das seções.
+    ```
+
+Um ajuste por mensagem. Diga sempre o que **não** pode mudar.

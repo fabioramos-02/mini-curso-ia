@@ -223,3 +223,21 @@ body,
   max-width: 60rem;
   margin: 0 auto;
 }
+
+/* --- "Monte o prompt desta sessão": antes em cinza, depois na cor da marca --- */
+.md-typeset details.quote {
+  border-color: #8a8a85;
+  opacity: .9;
+}
+
+.md-typeset .admonition.example {
+  border-color: var(--segov-primary);
+}
+
+.md-typeset .admonition.example > .admonition-title {
+  background-color: rgba(0, 79, 159, .08);
+}
+
+.md-typeset .admonition.example > .admonition-title::before {
+  background-color: var(--segov-primary);
+}

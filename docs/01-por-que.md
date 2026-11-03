@@ -22,3 +22,16 @@ Hoje cada pessoa pede relatório à IA de um jeito. O resultado muda toda vez:
 
 O padrão serve para a IA fazer a parte repetitiva (layout, cores, organização) e você ficar com a
 parte que importa: escolher os dados e conferir o resultado.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** o que acontece quando eu peço do jeito de sempre?
+
+**O que entra no prompt:** o pedido solto, do jeito que quase todo mundo começa. Ele é o ponto de partida do curso.
+
+!!! example "Como ficou — linhas novas marcadas com ◀ novo"
+    ```text
+    Faz um relatório das tarefas da semana.  ◀ novo
+    ```
+
+O que falta nele: **quem lê**, **qual dado usar** e **qual formato**. A IA vai chutar as três coisas. Nas próximas sessões, cada lacuna vira um bloco do prompt.

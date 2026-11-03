@@ -90,3 +90,27 @@ dura mais que uns dias.
 - [ ] O relatório abre bem no celular (teste no seu).
 
 Com os cinco OK, pode mandar.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** tem algum dado que não pode ir para um link público?
+
+**Quando usar:** antes de publicar. Cole o HTML numa conversa nova e peça só a varredura.
+
+!!! example "O prompt"
+    ```text
+    [PAPEL]
+    Aja como revisor de privacidade do Governo de MS.
+
+    [OBJETIVO]
+    Procure no HTML abaixo: CPF, RG, matrícula, e-mail ou telefone de pessoa,
+    nome de cidadão, dado de saúde, judicial ou de assistência social.
+    Liste cada achado com o trecho onde ele está. Se não achar nada, diga "nada encontrado".
+    Não altere nem reescreva o HTML.
+
+    [DADOS]
+    <!-- cole aqui o HTML -->
+    [FIM DOS DADOS]
+    ```
+
+É a mesma ficha, menor: só `[PAPEL]`, `[OBJETIVO]` e `[DADOS]`. A ficha serve para qualquer pedido, não só para relatório.

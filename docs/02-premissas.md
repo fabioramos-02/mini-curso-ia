@@ -32,3 +32,31 @@ Veja [a estrutura](06-estrutura-ds.md).
 
 !!! tip "Regra de bolso"
     Pergunta clara + dado certo + prompt base + estrutura fixa = relatório que você confia.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** onde cada premissa entra no texto do prompt?
+
+**O que entra no prompt:** a ficha vazia, com os 6 blocos. As 4 premissas viram blocos: Perguntas → `[CONTEXTO]` e `[OBJETIVO]`; Prompt base → `[PAPEL]` e `[ESCOPO]`; Dados → `[DADOS]`; Estrutura → `[FORMATO]`.
+
+??? quote "Como estava (fim da sessão anterior)"
+    ```text
+    Faz um relatório das tarefas da semana.
+    ```
+
+!!! example "Como ficou — linhas novas marcadas com ◀ novo"
+    ```text
+    [PAPEL]  ◀ novo
+
+    [ESCOPO]  ◀ novo
+
+    [CONTEXTO]  ◀ novo
+
+    [OBJETIVO]  ◀ novo
+
+    [FORMATO]  ◀ novo
+
+    [DADOS]  ◀ novo
+
+    Faz um relatório das tarefas da semana.
+    ```

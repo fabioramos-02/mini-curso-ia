@@ -54,3 +54,21 @@ levantamento, destaques, pontos de atenção e recomendações.
 2. A IA **respeitou a regra de perguntar antes**. Nenhum número foi inventado.
 3. A **divergência de 35.418 cadastros** entrou como "a conciliar", não como erro.
 4. O resultado abre no navegador, segue a paleta do Governo de MS e cabe no celular.
+
+## Monte o prompt desta sessão
+
+**Pergunta desta sessão:** o que eu respondo quando a IA pergunta antes de gerar?
+
+**Quando usar:** no passo 2 desta página, quando a IA pede o que falta. A resposta completa o `[CONTEXTO]`.
+
+!!! example "O prompt"
+    ```text
+    Quem vai ler: a Bianca e a gestão da SETDIG.
+    Para quê: acompanhar o levantamento de serviços digitais do Portal MS.GOV.BR.
+    Decisão: quais serviços priorizar na próxima rodada.
+    Período: setembro a outubro de 2026.
+    Fonte: planilha do levantamento, versão de 31/10.
+    Pendência que depende da chefia: a conferência dos 35.418 cadastros, que fica como "a conciliar".
+    ```
+
+Responda em uma linha por pergunta. Se não souber, diga "não sei". É melhor do que deixar a IA supor.

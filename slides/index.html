@@ -585,6 +585,94 @@
         grid-template-columns: 1fr;
       }
     }
+    /* Anatomia do prompt: mapa dos 6 blocos, com o bloco da vez aceso (só CSS) */
+    .reveal ol.mapa {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3em;
+      margin: 0 0 .5em !important;
+      padding: 0;
+      font-family: "Mulish", sans-serif;
+      font-weight: 800;
+      font-size: .45em;
+    }
+
+    .mapa li {
+      margin: 0;
+      padding: .25em .8em;
+      border-radius: 999px;
+      background: var(--ds-color-primary-50);
+      color: var(--ds-color-neutral-700);
+      border: 1px solid var(--ds-color-primary-100);
+    }
+
+    .mapa[data-ativo="papel"] [data-b="papel"],
+    .mapa[data-ativo="escopo"] [data-b="escopo"],
+    .mapa[data-ativo="contexto"] [data-b="contexto"],
+    .mapa[data-ativo="objetivo"] [data-b="objetivo"],
+    .mapa[data-ativo="formato"] [data-b="formato"],
+    .mapa[data-ativo="dados"] [data-b="dados"] {
+      background: var(--ds-color-primary-600);
+      border-color: var(--ds-color-primary-600);
+      color: var(--ds-color-neutral-0);
+    }
+
+    .reveal section.bloco {
+      font-size: .78em;
+    }
+
+    .reveal section.bloco h2 code {
+      color: var(--ds-color-primary-600);
+      font-size: .8em;
+    }
+
+    .serve,
+    .como {
+      margin: .35em 0 !important;
+    }
+
+    .serve b,
+    .como b,
+    .card > b {
+      display: block;
+      font-family: "Mulish", sans-serif;
+      font-size: .7em;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--ds-color-primary-800);
+    }
+
+    .card.no > b {
+      color: var(--ds-color-red-700);
+    }
+
+    .card.ok > b {
+      color: var(--ds-color-green-800);
+    }
+
+    .trecho {
+      display: block;
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: .72em;
+      line-height: 1.4;
+      margin-top: .25em;
+    }
+
+    .vira {
+      display: block;
+      margin-top: .3em;
+      font-size: .8em;
+    }
+
+    .ficha {
+      margin: .3em 0 0 1.2em !important;
+      font-size: .72em;
+    }
+
+    .ficha li {
+      margin: .15em 0;
+    }
   </style>
 </head>
 
@@ -622,26 +710,81 @@
       </section>
 
       <section class="secao" data-background-color="#004f9f">
-        <h2>As 4 premissas</h2>
-        <p>Perguntas · Prompt base · Dados · Estrutura</p>
+        <h2>Como se monta um prompt</h2>
+        <p>Um prompt bom é uma ficha com 6 blocos. Cada bloco responde uma pergunta.</p>
       </section>
 
       <section>
-        <h2>As 4 premissas</h2>
+        <h2>As 4 premissas viram 6 blocos</h2>
         <div class="grid">
-          <div class="card"><span class="num">1</span><strong>Perguntas</strong><br><span class="muted">Para quem, para
-              quê, qual decisão</span></div>
-          <div class="card"><span class="num">2</span><strong>Prompt base</strong><br><span class="muted">Pedir sempre
-              do mesmo jeito</span></div>
-          <div class="card"><span class="num">3</span><strong>Dados</strong><br><span class="muted">O que entra e o que
-              fica de fora</span></div>
-          <div class="card"><span class="num">4</span><strong>Estrutura</strong><br><span class="muted">Esqueleto fixo
-              no Design System</span></div>
+          <div class="card"><span class="num">1</span><strong>Perguntas</strong><span class="vira">→ <code>[CONTEXTO]</code> <code>[OBJETIVO]</code></span></div>
+          <div class="card"><span class="num">2</span><strong>Prompt base</strong><span class="vira">→ <code>[PAPEL]</code> <code>[ESCOPO]</code></span></div>
+          <div class="card"><span class="num">3</span><strong>Dados</strong><span class="vira">→ <code>[DADOS]</code></span></div>
+          <div class="card"><span class="num">4</span><strong>Estrutura</strong><span class="vira">→ <code>[FORMATO]</code></span></div>
         </div>
+        <p class="muted">As premissas são o que você pensa. Os blocos são onde isso entra no texto.</p>
       </section>
 
       <section>
-        <h2><span class="num">1</span>Perguntas</h2>
+        <h2>Do pedido solto à ficha</h2>
+        <div class="grid">
+          <div class="card no"><b>Pedido solto</b>
+            <p class="trecho">"Faz um relatório das tarefas da semana."</p>
+            <p class="muted" style="color:inherit">A IA chuta quem lê, inventa o que falta e escolhe o visual.</p>
+          </div>
+          <div class="card"><b>Ficha</b>
+            <ol class="ficha">
+              <li><code>[PAPEL]</code> quem a IA é</li>
+              <li><code>[ESCOPO]</code> o que ela pode usar</li>
+              <li><code>[CONTEXTO]</code> quem lê e para quê</li>
+              <li><code>[OBJETIVO]</code> o que entregar, em que ordem</li>
+              <li><code>[FORMATO]</code> o molde</li>
+              <li><code>[DADOS]</code> a matéria-prima</li>
+            </ol>
+          </div>
+        </div>
+        <p class="muted">Agora, um bloco por vez.</p>
+      </section>
+
+      <section class="bloco">
+        <ol class="mapa" data-ativo="papel" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[PAPEL]</code> Quem a IA é</h2>
+        <p class="serve"><b>Para que serve</b>Dá à IA um ponto de vista. Ela responde como especialista, não como um texto genérico.</p>
+        <p class="como"><b>Como construir</b>Pergunte: <em>quem eu contrataria para fazer isto?</em> Diga o ofício, o nível e o foco.</p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"Você é uma IA."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"Aja como analista sênior de dados da SETDIG. Transforme dado bruto em relatório curto, honesto e acionável."</span></div>
+        </div>
+        <p class="muted">Uma frase basta. O papel muda o tom e o que a IA considera importante.</p>
+      </section>
+
+      <section class="bloco">
+        <ol class="mapa" data-ativo="escopo" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[ESCOPO]</code> O que a IA pode usar</h2>
+        <p class="serve"><b>Para que serve</b>Cerca a IA. Impede número inventado, memória de outra conversa e busca na web.</p>
+        <p class="como"><b>Como construir</b>Pergunte: <em>de onde ela pode tirar informação, e o que faz se faltar?</em></p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"Use seus conhecimentos."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"Use SÓ o que estiver entre [DADOS] e [FIM DOS DADOS]. Se estiver vazio, peça os dados antes."</span></div>
+        </div>
+        <p class="muted">É o bloco que protege a sua assinatura. Sem ele, a IA completa o que falta.</p>
+      </section>
+
+      <section class="bloco">
+        <ol class="mapa" data-ativo="contexto" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[CONTEXTO]</code> Quem lê e para quê</h2>
+        <p class="serve"><b>Para que serve</b>Diz para quem a IA escreve e qual decisão o relatório apoia. Sem isso, ela escreve para ninguém.</p>
+        <p class="como"><b>Como construir</b>Responda as perguntas: <em>quem lê, para quê, que decisão, que período, de onde vêm os dados.</em></p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"É para a chefia."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"Quem lê: a Superintendente, na reunião de segunda. Decisão: o que priorizar de 03 a 07/11. Fonte: TFS, exportado em 03/11."</span></div>
+        </div>
+        <p class="muted">Passe o mouse em “Quem vai ler?” no próximo slide para ver exemplos de leitor.</p>
+      </section>
+
+      <section>
+        <ol class="mapa" data-ativo="contexto" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2>As perguntas do contexto</h2>
         <ul>
           <li class="qvl">
             <button type="button" class="qvl-btn" aria-expanded="false" aria-controls="qvl-pop-1">
@@ -664,9 +807,93 @@
         <p class="muted">Não sabe responder? Pare e pergunte a quem pediu. <strong>Passe o mouse em "Quem vai
             ler?"</strong> para ver exemplos.</p>
       </section>
+      <section class="bloco">
+        <ol class="mapa" data-ativo="objetivo" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[OBJETIVO]</code> O que entregar, e em que ordem</h2>
+        <p class="serve"><b>Para que serve</b>Define o que o relatório mostra e a ordem. A conclusão vem antes do número.</p>
+        <p class="como"><b>Como construir</b>Pergunte: <em>o que o leitor precisa ver primeiro, e o que é proibido?</em> Liste as partes e as regras.</p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"Faça um resumo."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"1. Frase-âncora com o resultado. 2. KPIs com evidência. 3. Atenção, com a decisão sugerida. Regras: sem jargão; se faltar algo, pergunte."</span></div>
+        </div>
+        <p class="muted">A frase-âncora entrega a conclusão. O número vem depois, como prova.</p>
+      </section>
+
+      <section class="bloco">
+        <ol class="mapa" data-ativo="formato" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[FORMATO]</code> O molde que a IA preenche</h2>
+        <p class="serve"><b>Para que serve</b>Fixa a forma. A IA só preenche os espaços, sem inventar cor nem layout.</p>
+        <p class="como"><b>Como construir</b>Pergunte: <em>qual molde ela preenche?</em> Anexe o template e proíba mexer na estrutura.</p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"Faça bonito."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"Preencha o template-relatorio.html anexado. Troque só os {{...}}. Não altere paleta nem estrutura."</span></div>
+        </div>
+        <p class="muted">Com o molde, todo relatório sai com a mesma cara, no padrão do Governo de MS.</p>
+      </section>
 
       <section>
-        <h2><span class="num">2</span>Prompt base</h2>
+        <ol class="mapa" data-ativo="formato" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2>O esqueleto do molde</h2>
+        <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Faixa azul:
+          título · período · números</div>
+        <div class="card">Destaques: cards numerados</div>
+        <div class="card">Detalhe: listas ou tabela por tema</div>
+        <div class="card">Atenção: riscos e pendências</div>
+        <div class="card" style="background:var(--ds-color-neutral-200)">Rodapé SETDIG</div>
+      </section>
+      <section>
+        <ol class="mapa" data-ativo="formato" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2>As cores dizem algo</h2>
+        <div class="grid">
+          <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Azul: marca e
+            links</div>
+          <div class="card ok">Verde: concluído</div>
+          <div class="card" style="background:var(--ds-color-orange-100);color:var(--ds-color-orange-800)">Laranja: em
+            andamento</div>
+          <div class="card no">Vermelho: bloqueado</div>
+        </div>
+        <p class="muted">Toda cor vem de uma variável <code>--ds-*</code>.</p>
+      </section>
+      <section class="bloco">
+        <ol class="mapa" data-ativo="dados" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2><code>[DADOS]</code> A matéria-prima</h2>
+        <p class="serve"><b>Para que serve</b>Entrega à IA o que ela pode usar, já recortado. Dado ruim gera relatório ruim.</p>
+        <p class="como"><b>Como construir</b>Pergunte: <em>que período, que colunas, que fonte e que data?</em></p>
+        <div class="grid">
+          <div class="card no"><b>Fraco</b><span class="trecho">"Segue a planilha inteira, com todas as abas."</span></div>
+          <div class="card ok"><b>Forte</b><span class="trecho">"Fonte: TFS, exportado em 03/11. Colunas: id, título, estado, frente. Só as tarefas de 03 a 07/11."</span></div>
+        </div>
+        <p class="muted">Menos colunas, menos erro. A fonte e a data vão junto.</p>
+      </section>
+
+      <section>
+        <ol class="mapa" data-ativo="dados" aria-label="Os 6 blocos do prompt"><li data-b="papel">Papel</li><li data-b="escopo">Escopo</li><li data-b="contexto">Contexto</li><li data-b="objetivo">Objetivo</li><li data-b="formato">Formato</li><li data-b="dados">Dados</li></ol>
+        <h2>O que leva e o que não leva</h2>
+        <div class="grid">
+          <div class="card ok"><strong>Leve</strong>
+            <ul>
+              <li>Só o período</li>
+              <li>Só as colunas úteis</li>
+              <li>Fonte e data</li>
+            </ul>
+          </div>
+          <div class="card no"><strong>Nunca leve</strong>
+            <ul>
+              <li>CPF, telefone, endereço</li>
+              <li>Senha, token</li>
+              <li>Dado sigiloso</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Precisa do número? Mande o total, não a lista de pessoas.</p>
+      </section>
+      <section class="secao" data-background-color="#004f9f">
+        <h2>A ficha montada</h2>
+        <p>Os 6 blocos juntos são o prompt base. Você copia, troca o contexto e cola os dados.</p>
+      </section>
+
+      <section>
+        <h2>O prompt base</h2>
         <div class="prompt-grid">
           <pre class="col-prompt"><code class="language-text" data-trim id="prompt-codigo">
 [PAPEL]
@@ -739,50 +966,6 @@ Não altere paleta nem estrutura. Rodapé: SETDIG.
         <p>Sem ela, a IA preenche o que falta, e o erro vai com a sua assinatura.</p>
       </section>
 
-      <section>
-        <h2><span class="num">3</span>Dados</h2>
-        <div class="grid">
-          <div class="card ok"><strong>Leve</strong>
-            <ul>
-              <li>Só o período</li>
-              <li>Só as colunas úteis</li>
-              <li>Fonte e data</li>
-            </ul>
-          </div>
-          <div class="card no"><strong>Nunca leve</strong>
-            <ul>
-              <li>CPF, telefone, endereço</li>
-              <li>Senha, token</li>
-              <li>Dado sigiloso</li>
-            </ul>
-          </div>
-        </div>
-        <p class="muted">Precisa do número? Mande o total, não a lista de pessoas.</p>
-      </section>
-
-      <section>
-        <h2><span class="num">4</span>Estrutura</h2>
-        <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Faixa azul:
-          título · período · números</div>
-        <div class="card">Destaques: cards numerados</div>
-        <div class="card">Detalhe: listas ou tabela por tema</div>
-        <div class="card">Atenção: riscos e pendências</div>
-        <div class="card" style="background:var(--ds-color-neutral-200)">Rodapé SETDIG</div>
-      </section>
-
-      <section>
-        <h2>As cores dizem algo</h2>
-        <div class="grid">
-          <div class="card" style="background:var(--ds-color-primary-600);color:var(--ds-color-neutral-0)">Azul: marca e
-            links</div>
-          <div class="card ok">Verde: concluído</div>
-          <div class="card" style="background:var(--ds-color-orange-100);color:var(--ds-color-orange-800)">Laranja: em
-            andamento</div>
-          <div class="card no">Vermelho: bloqueado</div>
-        </div>
-        <p class="muted">Toda cor vem de uma variável <code>--ds-*</code>.</p>
-      </section>
-
       <section class="secao" data-background-color="#004f9f">
         <h2>Mão na massa</h2>
         <p>Um relatório semanal, do começo ao fim</p>
@@ -805,7 +988,7 @@ Não altere paleta nem estrutura. Rodapé: SETDIG.
             <span class="sub">Pronto para a chefia, no padrão MS.</span>
           </div>
         </div>
-        <p class="cenario-legenda">É o caminho que vamos percorrer juntos agora.</p>
+        <p class="cenario-legenda">Agora é a sua vez: monte a sua ficha, bloco por bloco, no seu caso.</p>
       </section>
 
       <section class="full">
@@ -862,7 +1045,7 @@ Não altere paleta nem estrutura. Rodapé: SETDIG.
         <h2>O caminho</h2>
         <p><span class="num">1</span>Responder as perguntas</p>
         <p><span class="num">2</span>Exportar os dados do TFS</p>
-        <p><span class="num">3</span>Colar no prompt base</p>
+        <p><span class="num">3</span>Montar a ficha: os 6 blocos do prompt</p>
         <p><span class="num">4</span>Salvar o HTML e abrir no navegador</p>
         <p><span class="num">5</span>Passar o checklist</p>
       </section>

@@ -505,9 +505,8 @@
 
     .comp-full iframe {
       width: 100%;
-      flex: 1 1 auto;
-      min-height: 0;
-      height: auto;
+      /* altura fixa: com center:true o reveal dá altura automática ao slide, e o flex não tem de onde crescer */
+      height: 520px;
       border: 1px solid var(--ds-color-neutral-200);
       border-radius: var(--ds-radius-md);
       background: var(--ds-color-neutral-0);
